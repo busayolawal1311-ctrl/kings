@@ -13,16 +13,151 @@
 </head>
 
 <body>
-    <div>
-        <a href="">Home</a>
-        <a href="">Product</a>
-        <a href="">New Arrivals</a>
-        <a href="">Brands</a>
+    <!-- announcement bar -->
+    <div class="bg-black text-white">
+        <div class="max-w-7xl mx-auto px-6 py-3 relative">
+            <p class="text-center text-xs md:text-sm">
+                Sign up and get 20% off your first order.
+                <a href="#" class="font-medium underline">
+                    Sign Up Now
+                </a>
+            </p>
+            <button class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 text-lg">
+                 ✕
+            </button>
+        </div>
     </div>
+    <nav class="bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <div>
+                        <h1 class="text-4xl font-black">
+                            KINGS.CO
+                        </h1>
+                </div>
+
+                <!-- nav link -->
+                 <div class="hidden lg:flex items-center gap-8">
+                    <a href="#" class="flex items-center gap-1">
+                        Shop<span>⌄</span>
+                    </a>
+                    <a href="#">On Sale</a>
+                    <a href="#">New Arrivals</a>
+                    <a href="#">Brands</a>
+                 </div>
+
+                 <!-- Search Bar -->
+                  <search class="hidden md:flex flex-1 max-w-md mx-10">
+                    <input type="text" placeholder="Search for Product..." class="w-full bg-gray-200 rounded-full px-5 py-3 outline-none">
+                  </search>
+
+                  <!-- icons -->
+                   <div class="flex items-center gap-5 text-xl">
+                    <button>
+                        🛒
+                    </button>
+                    <button>
+                        👤
+                    </button>
+                   </div>
+            </div>
+        </div>
+    </nav>
     <main>
         {% block content %}
           
         {% endblock content %}
     </main>
+
+
+<footer class="bg-[#F0EEED] -mt-20 pt-35 pb-10">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
+
+            <div>
+                <h2 class="text-4xl font-black">
+                    KINGS.CO
+                </h2>
+
+                <p class="text-gray-500 mt-6">
+                    We have clothes that suit your style and which you're proud to wear.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="uppercase tracking-widest mb-6">
+                    Company
+                </h3>
+
+                <ul class="space-y-3 text-gray-500">
+                    <li>About</li>
+                    <li>Features</li>
+                    <li>Works</li>
+                    <li>Career</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="uppercase tracking-widest mb-6">
+                    Help
+                </h3>
+
+                <ul class="space-y-3 text-gray-500">
+                    <li>Customer Support</li>
+                    <li>Delivery Details</li>
+                    <li>Terms</li>
+                    <li>Privacy Policy</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="uppercase tracking-widest mb-6">
+                    FAQ
+                </h3>
+
+                <ul class="space-y-3 text-gray-500">
+                    <li>Account</li>
+                    <li>Orders</li>
+                    <li>Payments</li>
+                    <li>Manage Deliveries</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="uppercase tracking-widest mb-6">
+                    Resources
+                </h3>
+
+                <ul class="space-y-3 text-gray-500">
+                    <li>Free eBooks</li>
+                    <li>Development Tutorial</li>
+                    <li>How To Blog</li>
+                    <li>YouTube Playlist</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr class="my-10 border-gray-300">
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+
+            <p class="text-gray-500">
+                Kings.co © 2026. All Rights Reserved.
+            </p>
+
+            <div class="flex gap-2">
+                <img src="{% static "image/bank_method.svg" %}" alt="payment methods" class="h-10">
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+    
 </body>
+
 </html>
