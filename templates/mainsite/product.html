@@ -9,11 +9,11 @@
   <section class="py-6 border-t">
     <!-- Breadcrumbs -->
      <div class="max-w-7xl mx-auto px-6">
-        <a href="#">Home</a>
+        <a href="{% url 'mainsite:index' %}">Home</a>
         <span>></span>
-        <a href="#">Shop</a>
+        <a href="{% url 'mainsite:category' %}">Shop</a>
         <span>></span>
-        <a href="#">Men</a>
+        <a href="{% url 'mainsite:category' %}">Men</a>
         <span>></span>
         <span class="text-black">T-Shirts</span>
      </div>
@@ -42,7 +42,7 @@
            <!-- Thumbnails Main Image -->
            <div class="bg-[#F0EEED] rounded-3xl p-8 flex-1">
             <img src="{% static "image/one_life_tshirts.png" %}" alt="One life t-shirt" class="w-full h-150 object-contain">
-           </div> 
+           </div>
 
         </div>
           <div>
@@ -50,16 +50,16 @@
               One life Graphic T-Shirt
             </h1>
             <div class="flex items-center gap-4 mt-4">
-              ⭐⭐⭐⭐⭐
+              &#9733;&#9733;&#9733;&#9733;&#9733;
               <span>4.5/5</span>
             </div>
 
             <div class="flex items-center gap-4 mt-4">
               <span class="text-4xl font-bold">
-                N260
+                &#8358;260
               </span>
               <span class="text-4xl text-gray-400 line-through">
-                N300
+                &#8358;300
               </span>
               <span class="bg-red-200 text-red-500 px-3 py-1 rounded-full">
                 -40%
@@ -67,10 +67,10 @@
             </div>
             <p class="mt-6 text-gray-500 max-w-lg">
               This graphic t-shirts is perfect for any occasion.
-              Carafted from a soft and breathable fabric, it offers superior comfort and style.
+              Crafted from a soft and breathable fabric, it offers superior comfort and style.
             </p>
             <hr class="my-8 border-gray-200">
-            <!-- Color for avaialble for cloth -->
+            <!-- Available colors -->
             <div>
               <p class="text-gray-500 mb-4">
                 Select Colors
@@ -110,8 +110,8 @@
              <hr class="my-8 border-gray-200">
              <!-- Add to Cart Thumbnails -->
              <div class="flex flex-col sm:flex-row gap-4">
-              
-              <!-- Quanlity Selector -->
+
+              <!-- Quantity selector -->
                <div class="flex items-center justify-between bg-gray-100 rounded-full px-6 py-6 min-w-42">
                 <button  class="text-xl font-bold">
                   -
@@ -128,13 +128,13 @@
 
               <button class="flex-1 bg-black text-white rounded-full py-4 font-medium hover:bg-gray-800 transition">
                 Add to Cart
-              </button>               
+              </button>
              </div>
 
             </div>
 
           </div>
-          
+
       </div>
 
     </div>
@@ -174,11 +174,11 @@
 
             <div class="flex gap-3">
                 <button class="bg-gray-100 px-4 py-3 rounded-full">
-                    ⚙️
+                    &#9881;
                 </button>
 
                 <button class="bg-gray-100 px-6 py-3 rounded-full">
-                    Latest ▼
+                    Latest &#9662;
                 </button>
 
                 <button class="bg-black text-white px-6 py-3 rounded-full">
@@ -191,23 +191,23 @@
       </div>
     </div>
 
-    <!-- All Regviews cards containner -->
+    <!-- All review cards container -->
     <div class="grid md:grid-cols-2 gap-6 mt-8 p-10">
-      
+
       <!-- Review card 1 -->
-      <div class="border border-gray-200 rounded-3xlp-6 p-6">
+      <div class="border border-gray-200 rounded-3xl p-6">
         <div class="flex justify-between items-center">
           <div class="text-yellow-400">
-            ⭐⭐⭐⭐⭐
+            &#9733;&#9733;&#9733;&#9733;&#9733;
           </div>
 
            <button>
-            ⋯
+            &#8942;
           </button>
 
         </div>
         <h3 class="font-bold text-xl mt-4">
-          Busayo L. ✅
+          Busayo L. &#10003;
         </h3>
 
         <p class="text-gray-500 mt-4">
@@ -219,19 +219,19 @@
       </div>
 
       <!-- Review card 2 -->
-      <div class="border border-gray-200 rounded-3xlp-6 p-6">
+      <div class="border border-gray-200 rounded-3xl p-6">
         <div class="flex justify-between items-center">
           <div class="text-yellow-400">
-            ⭐⭐⭐⭐⭐
+            &#9733;&#9733;&#9733;&#9733;&#9733;
           </div>
 
            <button>
-            ⋯
+            &#8942;
           </button>
 
         </div>
         <h3 class="font-bold text-xl mt-4">
-          Samantha D. ✅
+          Samantha D. &#10003;
         </h3>
 
         <p class="text-gray-500 mt-4">
@@ -243,18 +243,18 @@
       </div>
 
       <!-- Review card 3 -->
-      <div class="border border-gray-200 rounded-3xlp-6 p-6">
+      <div class="border border-gray-200 rounded-3xl p-6">
         <div class="flex justify-between items-center">
           <div class="text-yellow-400">
-            ⭐⭐⭐⭐⭐
+            &#9733;&#9733;&#9733;&#9733;&#9733;
           </div>
 
            <button>
-            ⋯
+            &#8942;
           </button>
         </div>
         <h3 class="font-bold text-xl mt-4">
-          Ethan R. ✅
+          Ethan R. &#10003;
         </h3>
 
         <p class="text-gray-500 mt-4">
@@ -266,19 +266,19 @@
       </div>
 
       <!-- Review card 4 -->
-      <div class="border border-gray-200 rounded-3xlp-6 p-6">
+      <div class="border border-gray-200 rounded-3xl p-6">
         <div class="flex justify-between items-center">
           <div class="text-yellow-400">
-            ⭐⭐⭐⭐⭐
+            &#9733;&#9733;&#9733;&#9733;&#9733;
           </div>
 
           <button>
-            ⋯
+            &#8942;
           </button>
 
         </div>
         <h3 class="font-bold text-xl mt-4">
-          Oliva P. ✅
+          Oliva P. &#10003;
         </h3>
 
         <p class="text-gray-500 mt-4">
@@ -290,19 +290,19 @@
       </div>
 
       <!-- Review card 5 -->
-      <div class="border border-gray-200 rounded-3xlp-6 p-6">
+      <div class="border border-gray-200 rounded-3xl p-6">
         <div class="flex justify-between items-center">
           <div class="text-yellow-400">
-            ⭐⭐⭐⭐⭐
+            &#9733;&#9733;&#9733;&#9733;&#9733;
           </div>
 
           <button>
-            ⋯
+            &#8942;
           </button>
 
         </div>
         <h3 class="font-bold text-xl mt-4">
-          Liam K. ✅
+          Liam K. &#10003;
         </h3>
 
         <p class="text-gray-500 mt-4">
@@ -314,18 +314,18 @@
       </div>
 
       <!-- Review card 6 -->
-      <div class="border border-gray-200 rounded-3xlp-6 p-6">
+      <div class="border border-gray-200 rounded-3xl p-6">
         <div class="flex justify-between items-center">
           <div class="text-yellow-400">
-            ⭐⭐⭐⭐⭐
+            &#9733;&#9733;&#9733;&#9733;&#9733;
           </div>
 
            <button>
-            ⋯
+            &#8942;
           </button>
         </div>
         <h3 class="font-bold text-xl mt-4">
-          Ava V. ✅
+          Ava V. &#10003;
         </h3>
 
         <p class="text-gray-500 mt-4">
@@ -343,13 +343,13 @@
       <button class="bg-black text-white px-6 py-3 rounded-full">
         Load More Reviews
       </button>
-      
+
     </div>
    </section>
 
    <section class="py-20">
     <!-- You Might Also Like Section -->
-     
+
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-5xl font-black text-center mb-16">
             YOU MIGHT ALSO LIKE
@@ -360,72 +360,72 @@
             <!-- Like Card 1 -->
              <div>
                 <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
+                    <img
                     src="{% static "image/yml_1.png" %}" alt="Polo"class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
                 </div>
                 <h3 class="font-bold text-xl mt-4">
                     Polo with Contrast Trims
                 </h3>
                 <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
+                    &#9733;&#9733;&#9733;&#9733;&#9734;
                     <span>4.5/5</span>
                 </div>
                 <div class="mt-2">
-                    <span class="font-bold text-2xl">₦120</span>
+                    <span class="font-bold text-2xl">&#8358;120</span>
                 </div>
              </div>
 
              <!-- Like card 2 -->
               <div>
                 <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
+                    <img
                     src="{% static "image/yml_2.png" %}" alt="Gradient Graphics T-shirt" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
                 </div>
                 <h3 class="font-bold text-xl mt-4">
                     Courage Graphic T-shirt
                 </h3>
                 <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
+                    &#9733;&#9733;&#9733;&#9733;&#9734;
                     <span>3.5/5</span>
                 </div>
                 <div class="mt-2">
-                    <span class="font-bold text-2xl">₦240</span>
+                    <span class="font-bold text-2xl">&#8358;240</span>
                 </div>
              </div>
-             
+
              <!--Like card 3 -->
              <div>
                 <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
+                    <img
                     src="{% static "image/yml_3.png" %}" alt="Polo With Tipping" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
                 </div>
                 <h3 class="font-bold text-xl mt-4">
                     Polo With Tipping Details
                 </h3>
                 <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
+                    &#9733;&#9733;&#9733;&#9733;&#9734;
                     <span>4.5/5</span>
                 </div>
                 <div class="mt-2">
-                    <span class="font-bold text-2xl">₦180</span>
+                    <span class="font-bold text-2xl">&#8358;180</span>
                 </div>
              </div>
 
              <!--Like card 4 -->
               <div>
                 <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
+                    <img
                     src="{% static "image/yml_4.png" %}" alt="T-Shirt" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
                 </div>
                 <h3 class="font-bold text-xl mt-4">
                     T-Shirt Triplet Pack
                 </h3>
                 <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
+                    &#9733;&#9733;&#9733;&#9733;&#9734;
                     <span>4.5/5</span>
                 </div>
                 <div class="mt-2">
-                    <span class="font-bold text-2xl">₦130</span>
+                    <span class="font-bold text-2xl">&#8358;130</span>
                 </div>
              </div>
 

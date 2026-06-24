@@ -18,11 +18,11 @@ Home
                     Your Style
                 </h1>
                 <p class="mt-8 text-gray-500 max-w-lg">
-                    Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sesnse of style.
+                    Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
                 </p>
-                <button class="mt-8 bg-black text-white px-12 py-4 rounded-full hover:bg-gray-800 transition">
+                <a href="{% url 'mainsite:category' %}" class="inline-block mt-8 bg-black text-white px-12 py-4 rounded-full hover:bg-gray-800 transition">
                     Shop Now
-                </button>
+                </a>
 
                 <!-- Statistics -->
                  <div class="flex flex-wrap gap-8 mt-14">
@@ -58,11 +58,11 @@ Home
 
                 <!-- small star -->
                  <div class="absolute left-10 top-1/2 text-4xl">
-                    ✦
+                    &#10022;
                  </div>
                  <!-- Large Star -->
                   <div class="absolute right-10 top-16 text-7xl">
-                    ✦
+                    &#10022;
                   </div>
 
                   <img src="{% static "image/hero_image.png" %}" alt="Fashion Models" class="w-full">
@@ -72,36 +72,36 @@ Home
 </section>
 
 <!-- Other brand logo section -->
-<section class="bg-black py-12 overflow-hidden">
+<section id="brands" class="bg-black py-12 overflow-hidden">
 
         <div class="flex marquee gap-16">
-            <img 
+            <img
             src="{% static "image/versace.svg" %}" alt="Versace" class="h-8 shrink-0">
-            <img 
+            <img
             src="{% static "image/zara.svg" %}" alt="Zara" class="h-8 shrink-0">
-            <img 
+            <img
             src="{% static "image/gucci.svg" %}" alt="Gucci" class="h-8 shrink-0">
-            <img 
+            <img
             src="{% static "image/prada.svg" %}" alt="Prada" class="h-8 shrink-0">
-            <img 
+            <img
             src="{% static "image/calvin.svg" %}" alt="Calvin Klein" class="h-8 shrink-0">
-            
+
             <!-- Duplicate for seamless loop to create nice effective -->
-             <img 
+             <img
             src="{% static "image/versace.svg" %}" alt="Versace" class="h-8 shrink-0">
-            <img 
+            <img
             src="{% static "image/zara.svg" %}" alt="Zara" class="h-8 shrink-0">
-            <img 
+            <img
             src="{% static "image/gucci.svg" %}" alt="Gucci" class="h-8 shrink-0">
-            <img 
+            <img
             src="{% static "image/prada.svg" %}" alt="Prada" class="h-8 shrink-0">
-            <img 
+            <img
             src="{% static "image/calvin.svg" %}" alt="Calvin Klein" class="h-8 shrink-0">
         </div>
 
 </section>
 
-<section class="py-20">
+<section id="new-arrivals" class="py-20">
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-5xl font-black text-center mb-16">
             NEW ARRIVALS
@@ -110,84 +110,191 @@ Home
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
             <!-- Card 1 -->
-             <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
-                    src="{% static "image/tshirt_1.png" %}" alt="t shirt" 
-                    class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    T-shirt with Tape Details
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
-                    <span>4.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">₦120</span>
-                </div>
-             </div>
+            <div class="group">
+                <div class="relative bg-[#F0EEED] rounded-3xl p-6 overflow-hidden">
 
-             <!-- card 2 -->
-              <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
-                    src="{% static "image/jean_1.png" %}" alt="Jean" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Skinny Fit Jeans
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
-                    <span>3.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">₦240</span>
-                </div>
-             </div>
-             
-             <!-- card 3 -->
-             <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
-                    src="{% static "image/shirt_1.png" %}" alt="shirt" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Checkered Shirt
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
-                    <span>4.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">₦180</span>
-                </div>
-             </div>
+                    <span class="absolute top-4 left-4 bg-red-500 text-white text-xs px-3 py-1 rounded-full">
+                        NEW
+                    </span>
 
-             <!-- card 4 -->
-              <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
-                    src="{% static "image/shirt_2.png" %}" alt="t shirt organge" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Sleeve Striped T-shirt
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
-                    <span>4.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">₦130</span>
-                </div>
-             </div>
+                    <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center transition hover:scale-110">
+                        &#9825;
+                    </button>
 
-             </div>
+                    <img
+                        src="{% static 'image/tshirt_1.png' %}"
+                        alt="T-Shirt with Tape Details"
+                        class="w-full h-72 object-contain transition duration-500 group-hover:scale-110"
+                    >
+                </div>
+
+                <div class="pt-4">
+                    <h3 class="font-bold text-lg">
+                        T-Shirt with Tape Details
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-sm text-gray-500">(124)</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-3">
+                        <span class="w-4 h-4 rounded-full bg-black"></span>
+                        <span class="w-4 h-4 rounded-full bg-blue-600"></span>
+                        <span class="w-4 h-4 rounded-full bg-gray-400"></span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-3">
+                        <span class="font-bold text-2xl">&#8358;120</span>
+                        <span class="text-gray-400 line-through">&#8358;180</span>
+                    </div>
+
+                    <button class="w-full mt-4 py-3 rounded-full bg-black text-white font-medium transition hover:bg-neutral-800">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group">
+                <div class="relative bg-[#F0EEED] rounded-3xl p-6 overflow-hidden">
+
+                    <span class="absolute top-4 left-4 bg-red-500 text-white text-xs px-3 py-1 rounded-full">
+                        NEW
+                    </span>
+
+                    <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center transition hover:scale-110">
+                        &#9825;
+                    </button>
+
+                    <img
+                        src="{% static 'image/jean_1.png' %}"
+                        alt="Skinny Fit Jeans"
+                        class="w-full h-72 object-contain transition duration-500 group-hover:scale-110"
+                    >
+                </div>
+
+                <div class="pt-4">
+                    <h3 class="font-bold text-lg">
+                        Skinny Fit Jeans
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                        <span class="text-sm text-gray-500">(89)</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-3">
+                        <span class="w-4 h-4 rounded-full bg-blue-900"></span>
+                        <span class="w-4 h-4 rounded-full bg-gray-700"></span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-3">
+                        <span class="font-bold text-2xl">&#8358;240</span>
+                        <span class="text-gray-400 line-through">&#8358;300</span>
+                    </div>
+
+                    <button class="w-full mt-4 py-3 rounded-full bg-black text-white font-medium transition hover:bg-neutral-800">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="group">
+                <div class="relative bg-[#F0EEED] rounded-3xl p-6 overflow-hidden">
+
+                    <span class="absolute top-4 left-4 bg-red-500 text-white text-xs px-3 py-1 rounded-full">
+                        NEW
+                    </span>
+
+                    <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center transition hover:scale-110">
+                        &#9825;
+                    </button>
+
+                    <img
+                        src="{% static 'image/shirt_1.png' %}"
+                        alt="Checkered Shirt"
+                        class="w-full h-72 object-contain transition duration-500 group-hover:scale-110"
+                    >
+                </div>
+
+                <div class="pt-4">
+                    <h3 class="font-bold text-lg">
+                        Checkered Shirt
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-sm text-gray-500">(156)</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-3">
+                        <span class="w-4 h-4 rounded-full bg-green-800"></span>
+                        <span class="w-4 h-4 rounded-full bg-black"></span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-3">
+                        <span class="font-bold text-2xl">&#8358;180</span>
+                    </div>
+
+                    <button class="w-full mt-4 py-3 rounded-full bg-black text-white font-medium transition hover:bg-neutral-800">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="group">
+                <div class="relative bg-[#F0EEED] rounded-3xl p-6 overflow-hidden">
+
+                    <span class="absolute top-4 left-4 bg-green-600 text-white text-xs px-3 py-1 rounded-full">
+                        BEST SELLER
+                    </span>
+
+                    <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center transition hover:scale-110">
+                        &#9825;
+                    </button>
+
+                    <img
+                        src="{% static 'image/shirt_2.png' %}"
+                        alt="Sleeve Striped T-Shirt"
+                        class="w-full h-72 object-contain transition duration-500 group-hover:scale-110"
+                    >
+                </div>
+
+                <div class="pt-4">
+                    <h3 class="font-bold text-lg">
+                        Sleeve Striped T-Shirt
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-sm text-gray-500">(201)</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-3">
+                        <span class="w-4 h-4 rounded-full bg-orange-500"></span>
+                        <span class="w-4 h-4 rounded-full bg-white border"></span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-3">
+                        <span class="font-bold text-2xl">&#8358;130</span>
+                    </div>
+
+                    <button class="w-full mt-4 py-3 rounded-full bg-black text-white font-medium transition hover:bg-neutral-800">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
         </div>
+
+
           <div class="text-center mt-12">
-            <button class="border px-12 py-4 rounded-full">
+            <a href="{% url 'mainsite:category' %}" class="inline-block border px-12 py-4 rounded-full">
                 View All
-            </button>
+            </a>
             </div>
     </div>
 </section>
@@ -201,84 +308,190 @@ Home
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-            <!-- Top Selling Card 1 -->
-             <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
-                    src="{% static "image/top_selling_1.png" %}" alt="Vertical Striped Shirt"class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Vertical Striped Shirt
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
-                    <span>4.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">₦120</span>
-                </div>
-             </div>
+            <!-- Card 1 -->
+            <div class="group">
+                <div class="relative bg-[#F0EEED] rounded-3xl p-6 overflow-hidden">
 
-             <!-- Top Selling card 2 -->
-              <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
-                    src="{% static "image/top_selling_2.png" %}" alt="Courage Graphic T-shirt" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Courage Graphic T-shirt
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
-                    <span>3.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">₦240</span>
-                </div>
-             </div>
-             
-             <!--Top Selling card 3 -->
-             <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
-                    src="{% static "image/top_selling_3.png" %}" alt="Loose Fit Bermuda Shorts" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Loose Fit Bermuda Shorts
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
-                    <span>4.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">₦180</span>
-                </div>
-             </div>
+                    <span class="absolute top-4 left-4 bg-green-600 text-white text-xs px-3 py-1 rounded-full">
+                        BEST SELLER
+                    </span>
 
-             <!--Top Selling card 4 -->
-              <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img 
-                    src="{% static "image/top_selling_4.png" %}" alt="Faded Skinny Jeans" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Faded Skinny Jeans
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    ⭐⭐⭐⭐☆
-                    <span>4.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">₦130</span>
-                </div>
-             </div>
+                    <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center transition hover:scale-110">
+                        &#9825;
+                    </button>
 
-             </div>
+                    <img
+                        src="{% static 'image/top_selling_1.png' %}"
+                        alt="Vertical Striped Shirt"
+                        class="w-full h-72 object-contain transition duration-500 group-hover:scale-110"
+                    >
+                </div>
+
+                <div class="pt-4">
+                    <h3 class="font-bold text-lg">
+                        Vertical Striped Shirt
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-sm text-gray-500">(312)</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-3">
+                        <span class="w-4 h-4 rounded-full bg-blue-900"></span>
+                        <span class="w-4 h-4 rounded-full bg-white border"></span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-3">
+                        <span class="font-bold text-2xl">&#8358;120</span>
+                        <span class="text-gray-400 line-through">&#8358;180</span>
+                    </div>
+
+                    <button class="w-full mt-4 py-3 rounded-full bg-black text-white font-medium hover:bg-neutral-800 transition">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="group">
+                <div class="relative bg-[#F0EEED] rounded-3xl p-6 overflow-hidden">
+
+                    <span class="absolute top-4 left-4 bg-red-500 text-white text-xs px-3 py-1 rounded-full">
+                        HOT
+                    </span>
+
+                    <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center transition hover:scale-110">
+                        &#9825;
+                    </button>
+
+                    <img
+                        src="{% static 'image/top_selling_2.png' %}"
+                        alt="Courage Graphic T-shirt"
+                        class="w-full h-72 object-contain transition duration-500 group-hover:scale-110"
+                    >
+                </div>
+
+                <div class="pt-4">
+                    <h3 class="font-bold text-lg">
+                        Courage Graphic T-Shirt
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                        <span class="text-sm text-gray-500">(205)</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-3">
+                        <span class="w-4 h-4 rounded-full bg-black"></span>
+                        <span class="w-4 h-4 rounded-full bg-red-500"></span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-3">
+                        <span class="font-bold text-2xl">&#8358;240</span>
+                    </div>
+
+                    <button class="w-full mt-4 py-3 rounded-full bg-black text-white font-medium hover:bg-neutral-800 transition">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="group">
+                <div class="relative bg-[#F0EEED] rounded-3xl p-6 overflow-hidden">
+
+                    <span class="absolute top-4 left-4 bg-orange-500 text-white text-xs px-3 py-1 rounded-full">
+                        TRENDING
+                    </span>
+
+                    <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center transition hover:scale-110">
+                        &#9825;
+                    </button>
+
+                    <img
+                        src="{% static 'image/top_selling_3.png' %}"
+                        alt="Loose Fit Bermuda Shorts"
+                        class="w-full h-72 object-contain transition duration-500 group-hover:scale-110"
+                    >
+                </div>
+
+                <div class="pt-4">
+                    <h3 class="font-bold text-lg">
+                        Loose Fit Bermuda Shorts
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-sm text-gray-500">(164)</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-3">
+                        <span class="w-4 h-4 rounded-full bg-gray-800"></span>
+                        <span class="w-4 h-4 rounded-full bg-green-700"></span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-3">
+                        <span class="font-bold text-2xl">&#8358;180</span>
+                    </div>
+
+                    <button class="w-full mt-4 py-3 rounded-full bg-black text-white font-medium hover:bg-neutral-800 transition">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="group">
+                <div class="relative bg-[#F0EEED] rounded-3xl p-6 overflow-hidden">
+
+                    <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
+                        TOP RATED
+                    </span>
+
+                    <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center transition hover:scale-110">
+                        &#9825;
+                    </button>
+
+                    <img
+                        src="{% static 'image/top_selling_4.png' %}"
+                        alt="Faded Skinny Jeans"
+                        class="w-full h-72 object-contain transition duration-500 group-hover:scale-110"
+                    >
+                </div>
+
+                <div class="pt-4">
+                    <h3 class="font-bold text-lg">
+                        Faded Skinny Jeans
+                    </h3>
+
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="text-sm text-gray-500">(428)</span>
+                    </div>
+
+                    <div class="flex gap-2 mt-3">
+                        <span class="w-4 h-4 rounded-full bg-blue-900"></span>
+                        <span class="w-4 h-4 rounded-full bg-black"></span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mt-3">
+                        <span class="font-bold text-2xl">&#8358;130</span>
+                        <span class="text-gray-400 line-through">&#8358;180</span>
+                    </div>
+
+                    <button class="w-full mt-4 py-3 rounded-full bg-black text-white font-medium hover:bg-neutral-800 transition">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
         </div>
+
           <div class="text-center mt-12">
-            <button class="border px-12 py-4 rounded-full">
+            <a href="{% url 'mainsite:category' %}" class="inline-block border px-12 py-4 rounded-full">
                 View All
-            </button>
+            </a>
             </div>
     </div>
 </section>
@@ -290,7 +503,7 @@ Home
             <h2 class="text-4xl md:text-5xl font-black text-center mb-12">
                 BROWSE BY DRESS STYLE
             </h2>
-            
+
             <!-- the wears browse -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- Casual Wear -->
@@ -302,8 +515,8 @@ Home
                  </div>
                  <!-- formal Wear -->
                   <div class="bg-white rounded-3xl overflow-hidden relative h-72 lg:col-span-2">
-                    <img src="{% static "image/formal.png" %}" 
-                    alt="formal Waer" class="w-full h-full object-cover">
+                    <img src="{% static "image/formal.png" %}"
+                    alt="Formal Wear" class="w-full h-full object-cover">
                     <h3 class="absolute top-6 left-6 text-3xl font-bold">
                         Formal
                     </h3>
@@ -337,8 +550,8 @@ Home
                 OUR HAPPY CUSTOMERS
             </h2>
             <div class="flex gap-4">
-                <button class="text-3xl">←</button>
-                <button class="text-3xl">→</button>
+                <button class="text-3xl">&larr;</button>
+                <button class="text-3xl">&rarr;</button>
             </div>
         </div>
 
@@ -348,40 +561,40 @@ Home
 
         <div class="border rounded-3xl p-8">
             <div class="text-yellow-500 text-xl">
-                ⭐⭐⭐⭐⭐
+                &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
             <h3 class="font-bold text-xl mt-4">
                 Sarah M.
             </h3>
-            
+
             <p class="text-gray-500 mt-4">
-                I'm blown away by the quality and style of the clothes i received. From casual wear to elegant dresses, every piece I've bought has exceeded my expecatations.
+                I'm blown away by the quality and style of the clothes I received. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.
             </p>
         </div>
 
         <div class="border rounded-3xl p-8">
             <div class="text-yellow-500 text-xl">
-                ⭐⭐⭐⭐⭐
+                &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
             <h3 class="font-bold text-xl mt-4">
                 Alex K.
             </h3>
-            
+
             <p class="text-gray-500 mt-4">
-                Finding clothes that aligh with my personal style used to be a challenge until I discovered this Store.
+                Finding clothes that align with my personal style used to be a challenge until I discovered this store.
             </p>
         </div>
 
         <div class="border rounded-3xl p-8">
             <div class="text-yellow-500 text-xl">
-                ⭐⭐⭐⭐⭐
+                &#9733;&#9733;&#9733;&#9733;&#9733;
             </div>
             <h3 class="font-bold text-xl mt-4">
                 James L.
             </h3>
-            
+
             <p class="text-gray-500 mt-4">
-                As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon this plaform.
+                As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon this platform.
             </p>
         </div>
 

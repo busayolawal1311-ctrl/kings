@@ -5,10 +5,10 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'mainsite/index.html')
 
-def Category(request):
+def category(request):
     return render(request, 'mainsite/category.html')
 
-def Product(request):
+def product(request):
     return render(request, 'mainsite/product.html')
 
 def checkout(request):
