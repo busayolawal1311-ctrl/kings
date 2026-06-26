@@ -1,449 +1,184 @@
 {% extends "shared/mainlayout.html" %}
-{% load static %}
+
 {% block title %}
-  Product
+{% if product %}{{ product.name }}{% else %}Product{% endif %}
 {% endblock title %}
 
 {% block content %}
-
-  <section class="py-6 border-t">
-    <!-- Breadcrumbs -->
-     <div class="max-w-7xl mx-auto px-6">
-        <a href="{% url 'mainsite:index' %}">Home</a>
-        <span>></span>
-        <a href="{% url 'mainsite:category' %}">Shop</a>
-        <span>></span>
-        <a href="{% url 'mainsite:category' %}">Men</a>
-        <span>></span>
-        <span class="text-black">T-Shirts</span>
-     </div>
-  </section>
-
-  <!-- Main Product Area -->
-   <section class="pb-20">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-10">
-        <div class="flex gap-4">
-
-          <!-- Thumbnails -->
-           <div class="flex flex-col gap-4">
-            <div class="bg-[#F0EEED] rounded-2xl p-2">
-              <img src="{% static "image/one_life_tshirts.png" %}" alt="One life t-shirt" class="w-24">
-            </div>
-            <div class="bg-[#F0EEED] rounded-2xl p-2">
-              <img src="{% static "image/one_life_tshirts_2.png" %}" alt="" class="w-24">
-            </div>
-            <div class="bg-[#F0EEED] rounded-2xl p-2">
-              <img src="{% static "image/one_life_tshirts_3.png" %}" alt="" class="w-24">
-            </div>
-
-           </div>
-
-           <!-- Thumbnails Main Image -->
-           <div class="bg-[#F0EEED] rounded-3xl p-8 flex-1">
-            <img src="{% static "image/one_life_tshirts.png" %}" alt="One life t-shirt" class="w-full h-150 object-contain">
-           </div>
-
+{% if product %}
+    <section class="py-6 border-t">
+        <div class="max-w-7xl mx-auto px-6">
+            <a href="{% url 'mainsite:index' %}">Home</a>
+            <span>></span>
+            <a href="{% url 'mainsite:categories' %}">Shop</a>
+            <span>></span>
+            <a href="{% url 'mainsite:category_detail' product.category.slug %}">{{ product.category.name }}</a>
+            <span>></span>
+            <span class="text-black">{{ product.name }}</span>
         </div>
-          <div>
-            <h1 class="text-5xl font-black uppercase">
-              One life Graphic T-Shirt
-            </h1>
-            <div class="flex items-center gap-4 mt-4">
-              &#9733;&#9733;&#9733;&#9733;&#9733;
-              <span>4.5/5</span>
+    </section>
+
+    <section class="pb-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-10">
+                <div class="bg-[#F0EEED] rounded-3xl p-8">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-150 object-contain">
+                </div>
+
+                <div>
+                    <h1 class="text-5xl font-black uppercase">
+                        {{ product.name }}
+                    </h1>
+
+                    <div class="flex items-center gap-4 mt-4">
+                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                        <span>{{ product.rating }}/5</span>
+                    </div>
+
+                    <div class="flex items-center gap-4 mt-4">
+                        <span class="text-4xl font-bold">
+                            &#8358;{{ product.price }}
+                        </span>
+                        {% if product.old_price %}
+                            <span class="text-4xl text-gray-400 line-through">
+                                &#8358;{{ product.old_price }}
+                            </span>
+                        {% endif %}
+                        {% if product.badge %}
+                            <span class="bg-red-200 text-red-500 px-3 py-1 rounded-full">
+                                {{ product.badge }}
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    {% if product.description %}
+                        <p class="mt-6 text-gray-500 max-w-lg">
+                            {{ product.description }}
+                        </p>
+                    {% endif %}
+
+                    <hr class="my-8 border-gray-200">
+
+                    <div>
+                        <p class="text-gray-500 mb-4">
+                            Choose Size
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="px-6 py-3 rounded-full bg-gray-100">Small</button>
+                            <button class="px-6 py-3 rounded-full bg-gray-100">Medium</button>
+                            <button class="px-6 py-3 rounded-full bg-gray-100">Large</button>
+                            <button class="px-6 py-3 rounded-full bg-gray-100">X-Large</button>
+                        </div>
+                    </div>
+
+                    <hr class="my-8 border-gray-200">
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex items-center justify-between bg-gray-100 rounded-full px-6 py-6 min-w-42">
+                            <button class="text-xl font-bold">-</button>
+                            <span class="font-medium">1</span>
+                            <button class="text-xl font-bold">+</button>
+                        </div>
+
+                        <button class="flex-1 bg-black text-white rounded-full py-4 font-medium hover:bg-gray-800 transition">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
             </div>
-
-            <div class="flex items-center gap-4 mt-4">
-              <span class="text-4xl font-bold">
-                &#8358;260
-              </span>
-              <span class="text-4xl text-gray-400 line-through">
-                &#8358;300
-              </span>
-              <span class="bg-red-200 text-red-500 px-3 py-1 rounded-full">
-                -40%
-              </span>
-            </div>
-            <p class="mt-6 text-gray-500 max-w-lg">
-              This graphic t-shirts is perfect for any occasion.
-              Crafted from a soft and breathable fabric, it offers superior comfort and style.
-            </p>
-            <hr class="my-8 border-gray-200">
-            <!-- Available colors -->
-            <div>
-              <p class="text-gray-500 mb-4">
-                Select Colors
-              </p>
-              <div class="flex gap-4">
-                <button class="w-10 h-10 rounded-full bg-[#4F4631]"></button>
-
-                <button class="w-10 h-10 rounded-full bg-[#314F4A]"></button>
-
-                <button class="w-10 h-10 rounded-full bg-[#31344F]"></button>
-              </div>
-            <hr class="my-8 border-gray-200">
-            <!-- Choose Size of cloth Thumbnails -->
-             <div>
-              <p class="text-gray-500 mb-4">
-                Choose Size
-              </p>
-              <div class="flex flex-wrap gap-3">
-                <button class="px-6 py-3 rounded-full bg-gray-100">
-                  Small
-                </button>
-
-                <button class="px-6 py-3 rounded-full bg-gray-100">
-                  Medium
-                </button>
-
-                <button class="px-6 py-3 rounded-full bg-gray-100">
-                  Large
-                </button>
-
-                <button class="px-6 py-3 rounded-full bg-gray-100">
-                  X-Large
-                </button>
-              </div>
-             </div>
-
-             <hr class="my-8 border-gray-200">
-             <!-- Add to Cart Thumbnails -->
-             <div class="flex flex-col sm:flex-row gap-4">
-
-              <!-- Quantity selector -->
-               <div class="flex items-center justify-between bg-gray-100 rounded-full px-6 py-6 min-w-42">
-                <button  class="text-xl font-bold">
-                  -
-                </button>
-                <span class="font-medium">
-                  1
-                </span>
-
-                <button class="text-xl font-bold">
-                  +
-                </button>
-
-               </div>
-
-              <button class="flex-1 bg-black text-white rounded-full py-4 font-medium hover:bg-gray-800 transition">
-                Add to Cart
-              </button>
-             </div>
-
-            </div>
-
-          </div>
-
-      </div>
-
-    </div>
-    <hr class="my-8 border-gray-200">
-
-   </section>
-
-   <div class="pb-16">
-    <div class="max-w-7xl mx-auto px-6">
-
-        <!-- Tabs -->
-        <div class="flex justify-between text-center border-b">
-
-            <button class="flex-1 py-4 text-gray-500 hover:border-b-2 hover:border-black">
-                Product Details
-            </button>
-
-            <button class="flex-1 py-4 border-b-2 border-black font-medium">
-                Rating & Reviews
-            </button>
-
-            <button class="flex-1 py-4 text-gray-500 hover:border-b-2 hover:border-black">
-                FAQs
-            </button>
-
         </div>
+    </section>
 
-        <!-- Reviews Header -->
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mt-8">
+    <section class="pb-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between text-center border-b">
+                <button class="flex-1 py-4 text-gray-500 hover:border-b-2 hover:border-black">
+                    Product Details
+                </button>
+                <button class="flex-1 py-4 border-b-2 border-black font-medium">
+                    Rating & Reviews
+                </button>
+                <button class="flex-1 py-4 text-gray-500 hover:border-b-2 hover:border-black">
+                    FAQs
+                </button>
+            </div>
 
-            <div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 mt-8">
                 <h2 class="text-3xl font-bold">
                     All Reviews
-                    <span class="text-gray-500 text-lg">(451+)</span>
+                    <span class="text-gray-500 text-lg">({{ product.review_count }})</span>
                 </h2>
+
+                <div class="flex gap-3">
+                    <button class="bg-gray-100 px-4 py-3 rounded-full">&#9881;</button>
+                    <button class="bg-gray-100 px-6 py-3 rounded-full">Latest &#9662;</button>
+                    <button class="bg-black text-white px-6 py-3 rounded-full">Write a Review</button>
+                </div>
             </div>
 
-            <div class="flex gap-3">
-                <button class="bg-gray-100 px-4 py-3 rounded-full">
-                    &#9881;
-                </button>
+            <div class="grid md:grid-cols-2 gap-6 mt-8">
+                <div class="border border-gray-200 rounded-3xl p-6">
+                    <div class="flex justify-between items-center">
+                        <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <button>&#8942;</button>
+                    </div>
+                    <h3 class="font-bold text-xl mt-4">Busayo L. &#10003;</h3>
+                    <p class="text-gray-500 mt-4">
+                        I absolutely love this item. The design is unique and the fabric feels comfortable.
+                    </p>
+                    <p class="text-gray-400 mt-6">Posted on August 14, 2023</p>
+                </div>
 
-                <button class="bg-gray-100 px-6 py-3 rounded-full">
-                    Latest &#9662;
-                </button>
-
-                <button class="bg-black text-white px-6 py-3 rounded-full">
-                    Write a Review
-                </button>
+                <div class="border border-gray-200 rounded-3xl p-6">
+                    <div class="flex justify-between items-center">
+                        <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                        <button>&#8942;</button>
+                    </div>
+                    <h3 class="font-bold text-xl mt-4">Samantha D. &#10003;</h3>
+                    <p class="text-gray-500 mt-4">
+                        Great quality and the fit is exactly what I expected.
+                    </p>
+                    <p class="text-gray-400 mt-6">Posted on August 14, 2023</p>
+                </div>
             </div>
-
         </div>
+    </section>
 
-      </div>
-    </div>
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl font-black text-center mb-16">
+                YOU MIGHT ALSO LIKE
+            </h2>
 
-    <!-- All review cards container -->
-    <div class="grid md:grid-cols-2 gap-6 mt-8 p-10">
-
-      <!-- Review card 1 -->
-      <div class="border border-gray-200 rounded-3xl p-6">
-        <div class="flex justify-between items-center">
-          <div class="text-yellow-400">
-            &#9733;&#9733;&#9733;&#9733;&#9733;
-          </div>
-
-           <button>
-            &#8942;
-          </button>
-
+            {% if related_products %}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {% for product in related_products %}
+                        {% include "mainsite/partials/product_card.html" %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-center text-gray-500">Add more products to show related items.</p>
+            {% endif %}
         </div>
-        <h3 class="font-bold text-xl mt-4">
-          Busayo L. &#10003;
-        </h3>
-
-        <p class="text-gray-500 mt-4">
-          I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable.
-        </p>
-        <p class="text-gray-400 mt-6">
-          Posted on August 14, 2023
-        </p>
-      </div>
-
-      <!-- Review card 2 -->
-      <div class="border border-gray-200 rounded-3xl p-6">
-        <div class="flex justify-between items-center">
-          <div class="text-yellow-400">
-            &#9733;&#9733;&#9733;&#9733;&#9733;
-          </div>
-
-           <button>
-            &#8942;
-          </button>
-
+    </section>
+{% else %}
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl font-black">No products yet</h1>
+            <p class="text-gray-500 mt-4">
+                Add products in the Django admin and they will show up here automatically.
+            </p>
+            <a href="{% url 'mainsite:categories' %}" class="inline-block mt-8 bg-black text-white px-12 py-4 rounded-full">
+                Back to Shop
+            </a>
         </div>
-        <h3 class="font-bold text-xl mt-4">
-          Samantha D. &#10003;
-        </h3>
+    </section>
+{% endif %}
 
-        <p class="text-gray-500 mt-4">
-          I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable.
-        </p>
-        <p class="text-gray-400 mt-6">
-          Posted on August 14, 2023
-        </p>
-      </div>
-
-      <!-- Review card 3 -->
-      <div class="border border-gray-200 rounded-3xl p-6">
-        <div class="flex justify-between items-center">
-          <div class="text-yellow-400">
-            &#9733;&#9733;&#9733;&#9733;&#9733;
-          </div>
-
-           <button>
-            &#8942;
-          </button>
-        </div>
-        <h3 class="font-bold text-xl mt-4">
-          Ethan R. &#10003;
-        </h3>
-
-        <p class="text-gray-500 mt-4">
-          I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable.
-        </p>
-        <p class="text-gray-400 mt-6">
-          Posted on August 14, 2023
-        </p>
-      </div>
-
-      <!-- Review card 4 -->
-      <div class="border border-gray-200 rounded-3xl p-6">
-        <div class="flex justify-between items-center">
-          <div class="text-yellow-400">
-            &#9733;&#9733;&#9733;&#9733;&#9733;
-          </div>
-
-          <button>
-            &#8942;
-          </button>
-
-        </div>
-        <h3 class="font-bold text-xl mt-4">
-          Oliva P. &#10003;
-        </h3>
-
-        <p class="text-gray-500 mt-4">
-          I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable.
-        </p>
-        <p class="text-gray-400 mt-6">
-          Posted on August 14, 2023
-        </p>
-      </div>
-
-      <!-- Review card 5 -->
-      <div class="border border-gray-200 rounded-3xl p-6">
-        <div class="flex justify-between items-center">
-          <div class="text-yellow-400">
-            &#9733;&#9733;&#9733;&#9733;&#9733;
-          </div>
-
-          <button>
-            &#8942;
-          </button>
-
-        </div>
-        <h3 class="font-bold text-xl mt-4">
-          Liam K. &#10003;
-        </h3>
-
-        <p class="text-gray-500 mt-4">
-          I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable.
-        </p>
-        <p class="text-gray-400 mt-6">
-          Posted on August 14, 2023
-        </p>
-      </div>
-
-      <!-- Review card 6 -->
-      <div class="border border-gray-200 rounded-3xl p-6">
-        <div class="flex justify-between items-center">
-          <div class="text-yellow-400">
-            &#9733;&#9733;&#9733;&#9733;&#9733;
-          </div>
-
-           <button>
-            &#8942;
-          </button>
-        </div>
-        <h3 class="font-bold text-xl mt-4">
-          Ava V. &#10003;
-        </h3>
-
-        <p class="text-gray-500 mt-4">
-          I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable.
-        </p>
-        <p class="text-gray-400 mt-6">
-          Posted on August 14, 2023
-        </p>
-      </div>
-
-    </div>
-
-    <div class="flex justify-center mt-10">
-
-      <button class="bg-black text-white px-6 py-3 rounded-full">
-        Load More Reviews
-      </button>
-
-    </div>
-   </section>
-
-   <section class="py-20">
-    <!-- You Might Also Like Section -->
-
+<section class="relative z-10 p-15">
     <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-5xl font-black text-center mb-16">
-            YOU MIGHT ALSO LIKE
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-            <!-- Like Card 1 -->
-             <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img
-                    src="{% static "image/yml_1.png" %}" alt="Polo"class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Polo with Contrast Trims
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    &#9733;&#9733;&#9733;&#9733;&#9734;
-                    <span>4.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">&#8358;120</span>
-                </div>
-             </div>
-
-             <!-- Like card 2 -->
-              <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img
-                    src="{% static "image/yml_2.png" %}" alt="Gradient Graphics T-shirt" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Courage Graphic T-shirt
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    &#9733;&#9733;&#9733;&#9733;&#9734;
-                    <span>3.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">&#8358;240</span>
-                </div>
-             </div>
-
-             <!--Like card 3 -->
-             <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img
-                    src="{% static "image/yml_3.png" %}" alt="Polo With Tipping" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    Polo With Tipping Details
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    &#9733;&#9733;&#9733;&#9733;&#9734;
-                    <span>4.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">&#8358;180</span>
-                </div>
-             </div>
-
-             <!--Like card 4 -->
-              <div>
-                <div class="bg-[#F0EEED] rounded-3xl p-6">
-                    <img
-                    src="{% static "image/yml_4.png" %}" alt="T-Shirt" class="w-full h-64 object-contain transition hover:scale-105 cursor-pointer">
-                </div>
-                <h3 class="font-bold text-xl mt-4">
-                    T-Shirt Triplet Pack
-                </h3>
-                <div class="flex items-center gap-2 mt-2">
-                    &#9733;&#9733;&#9733;&#9733;&#9734;
-                    <span>4.5/5</span>
-                </div>
-                <div class="mt-2">
-                    <span class="font-bold text-2xl">&#8358;130</span>
-                </div>
-             </div>
-
-             </div>
-        </div>
-
-    </div>
-
-   </section>
-
-   <section class="relative z-10 p-15">
-    <!-- Newletter Subscription -->
-     <div class="max-w-7xl mx-auto px-6">
-
         <div class="bg-black rounded-[20px] p-8 lg:p-12">
-
             <div class="grid lg:grid-cols-2 gap-8 items-center">
-
                 <div>
                     <h2 class="text-white text-4xl lg:text-5xl font-black uppercase">
                         Stay Up To Date About Our Latest Offers
@@ -451,26 +186,13 @@
                 </div>
 
                 <div class="space-y-4">
-
-                    <input
-                        type="email"
-                        placeholder="Enter your email address"
-                        class="w-full rounded-full px-6 py-4 bg-white outline-none"
-                    >
-
-                    <button
-                        class="w-full bg-white rounded-full py-4 font-semibold">
+                    <input type="email" placeholder="Enter your email address" class="w-full rounded-full px-6 py-4 bg-white outline-none">
+                    <button class="w-full bg-white rounded-full py-4 font-semibold">
                         Subscribe to Newsletter
                     </button>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
-
 {% endblock content %}
