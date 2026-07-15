@@ -1,153 +1,457 @@
 {% load static %}
 
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
+    {# ======================================================
+       Document Metadata
+    ======================================================= #}
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <meta
+        name="description"
+        content="Kings.co — Premium everyday fashion curated for your lifestyle."
+    >
+
+    <meta
+        name="theme-color"
+        content="#111111"
+    >
+
+    {# ======================================================
+       Stylesheets
+    ======================================================= #}
+    <link
+        rel="stylesheet"
+        href="{% static 'css/styles.css' %}"
+    >
+
+    {# ======================================================
+       Page Title
+    ======================================================= #}
     <title>
         {% block title %}
-        {% endblock title %}
+            Kings.co
+        {% endblock %}
+        | Kings.co
     </title>
+
 </head>
 
 <body>
-    <!-- announcement bar -->
-    <div class="bg-black text-white">
-        <div class="max-w-7xl mx-auto px-6 py-3 relative">
-            <p class="text-center text-xs md:text-sm">
-                Sign up and get 20% off your first order.
-                <a href="{% url 'mainsite:index' %}" class="font-medium underline">
-                    Sign Up Now
-                </a>
-            </p>
-            <button class="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 text-lg" aria-label="Close announcement">
-                &times;
-            </button>
-        </div>
+
+    {# ======================================================
+       Skip Navigation
+       Improves keyboard accessibility.
+    ======================================================= #}
+    <a
+        class="skip-link"
+        href="#content"
+    >
+        Skip to Content
+    </a>
+
+
+    {# ======================================================
+       Promotional Announcement Banner
+    ======================================================= #}
+    <div
+        class="announcement"
+        data-announcement
+    >
+
+        <p>
+
+            Enjoy
+            <strong>20% off</strong>
+            your first order.
+
+            <a href="{% url 'mainsite:signup' %}">
+                Create an Account
+            </a>
+
+        </p>
+
+        <button
+            type="button"
+            aria-label="Dismiss announcement"
+            data-dismiss-announcement
+        >
+            ×
+        </button>
+
     </div>
 
-    <nav class="bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-center justify-between h-20">
-                <div>
-                    <a href="{% url 'mainsite:index' %}" class="text-4xl font-black">
-                        KINGS.CO
-                    </a>
-                </div>
 
-                <!-- nav link -->
-                <div class="hidden lg:flex items-center gap-8">
-                    <a href="{% url 'mainsite:categories' %}" class="flex items-center gap-1">
-                        Shop<span>&#8964;</span>
-                    </a>
-                    <a href="{% url 'mainsite:categories' %}">On Sale</a>
-                    <a href="{% url 'mainsite:index' %}#new-arrivals">New Arrivals</a>
-                    <a href="{% url 'mainsite:index' %}#brands">Brands</a>
-                </div>
+    {# ======================================================
+       Site Header
+    ======================================================= #}
+    <header class="site-header">
 
-                <!-- Search Bar -->
-                <search class="hidden md:flex flex-1 max-w-md mx-10">
-                    <input type="text" placeholder="Search for Product..." class="w-full bg-gray-200 rounded-full px-5 py-3 outline-none">
-                </search>
+        <div class="shell header-inner">
 
-                <!-- icons -->
-                <div class="flex items-center gap-5 text-xl">
-                    <a href="{% url 'mainsite:checkout' %}" aria-label="Cart">
-                        &#128722;
+            {# --------------------------
+               Brand Logo
+            --------------------------- #}
+            <a
+                class="brand"
+                href="{% url 'mainsite:index' %}"
+                aria-label="Kings.co Home"
+            >
+                KINGS.CO
+            </a>
+
+
+            {# --------------------------
+               Mobile Navigation Toggle
+            --------------------------- #}
+            <button
+                class="icon-button menu-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="primary-navigation"
+                data-menu-toggle
+            >
+
+                <span class="sr-only">
+                    Open Menu
+                </span>
+
+                <span aria-hidden="true">
+                    ☰
+                </span>
+
+            </button>
+
+
+            {# --------------------------
+               Primary Navigation
+            --------------------------- #}
+            <nav
+                id="primary-navigation"
+                class="primary-nav"
+                aria-label="Primary Navigation"
+            >
+
+                <a href="{% url 'mainsite:categories' %}">
+                    Shop All
+                </a>
+
+                <a href="{% url 'mainsite:categories' %}?sort=price_asc">
+                    Shop Sale
+                </a>
+
+                <a href="{% url 'mainsite:index' %}#new-arrivals">
+                    New Arrivals
+                </a>
+
+                <a href="{% url 'mainsite:index' %}#brands">
+                    Brands
+                </a>
+
+            </nav>
+
+
+            {# --------------------------
+               Product Search
+            --------------------------- #}
+            <form
+                class="header-search"
+                method="get"
+                action="{% url 'mainsite:categories' %}"
+                role="search"
+            >
+
+                <label
+                    class="sr-only"
+                    for="site-search"
+                >
+                    Search Products
+                </label>
+
+                <input
+                    id="site-search"
+                    type="search"
+                    name="q"
+                    value="{{ query|default:'' }}"
+                    placeholder="Search products"
+                >
+
+                <button
+                    type="submit"
+                    aria-label="Search"
+                >
+                    ⌕
+                </button>
+
+            </form>
+
+
+            {# --------------------------
+               User Actions
+            --------------------------- #}
+            <div class="header-actions">
+
+                <a
+                    class="icon-button"
+                    href="{% url 'mainsite:checkout' %}"
+                    aria-label="View Shopping Bag"
+                >
+
+                    🛍
+
+                    <span
+                        class="cart-count"
+                        data-cart-count
+                    >
+                        {{ cart_count }}
+                    </span>
+
+                </a>
+
+
+                {% if user.is_authenticated %}
+
+                    <form
+                        method="post"
+                        action="{% url 'logout' %}"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            class="text-link"
+                            type="submit"
+                        >
+                            Sign Out
+                        </button>
+
+                    </form>
+
+                {% else %}
+
+                    <a
+                        class="text-link"
+                        href="{% url 'login' %}"
+                    >
+                        Sign In
                     </a>
-                    <button aria-label="Account">
-                        &#128100;
-                    </button>
-                </div>
+
+                    <a
+                        class="button button-small"
+                        href="{% url 'mainsite:signup' %}"
+                    >
+                        Join Us
+                    </a>
+
+                {% endif %}
+
             </div>
-        </div>
-    </nav>
 
-    <main>
+        </div>
+
+    </header>
+
+
+    {# ======================================================
+       Main Content
+       Every page extends this block.
+    ======================================================= #}
+    <main id="content">
+
         {% block content %}
-        {% endblock content %}
+        {% endblock %}
+
     </main>
 
-    <footer class="bg-[#F0EEED] -mt-20 pt-35 pb-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
-                <div>
-                    <h2 class="text-4xl font-black">
-                        KINGS.CO
-                    </h2>
 
-                    <p class="text-gray-500 mt-6">
-                        We have clothes that suit your style and which you're proud to wear.
-                    </p>
-                </div>
+    {# ======================================================
+       Site Footer
+    ======================================================= #}
+    <footer class="site-footer">
 
-                <div>
-                    <h3 class="uppercase tracking-widest mb-6">
-                        Company
-                    </h3>
+        {# --------------------------
+           Newsletter
+        --------------------------- #}
+        <section class="shell newsletter">
 
-                    <ul class="space-y-3 text-gray-500">
-                        <li>About</li>
-                        <li>Features</li>
-                        <li>Works</li>
-                        <li>Career</li>
-                    </ul>
-                </div>
+            <div>
 
-                <div>
-                    <h3 class="uppercase tracking-widest mb-6">
-                        Help
-                    </h3>
-
-                    <ul class="space-y-3 text-gray-500">
-                        <li>Customer Support</li>
-                        <li>Delivery Details</li>
-                        <li>Terms</li>
-                        <li>Privacy Policy</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="uppercase tracking-widest mb-6">
-                        FAQ
-                    </h3>
-
-                    <ul class="space-y-3 text-gray-500">
-                        <li>Account</li>
-                        <li>Orders</li>
-                        <li>Payments</li>
-                        <li>Manage Deliveries</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="uppercase tracking-widest mb-6">
-                        Resources
-                    </h3>
-
-                    <ul class="space-y-3 text-gray-500">
-                        <li>Free eBooks</li>
-                        <li>Development Tutorial</li>
-                        <li>How To Blog</li>
-                        <li>YouTube Playlist</li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="my-10 border-gray-300">
-
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-gray-500">
-                    Kings.co &copy; 2026. All Rights Reserved.
+                <p class="eyebrow">
+                    Members Get More
                 </p>
 
-                <div class="flex gap-2">
-                    <img src="{% static "image/bank_method.svg" %}" alt="payment methods" class="h-10">
-                </div>
+                <h2>
+                    Offers Worth Opening.
+                </h2>
+
+                <p>
+                    New drops, early access,
+                    and styling inspiration—
+                    straight to your inbox.
+                </p>
+
             </div>
+
+            <form
+                method="post"
+                action="{% url 'mainsite:subscribe' %}"
+                novalidate
+            >
+
+                {% csrf_token %}
+
+                <label
+                    class="sr-only"
+                    for="newsletter-email"
+                >
+                    Email Address
+                </label>
+
+                <div class="newsletter-fields">
+
+                    <input
+                        id="newsletter-email"
+                        type="email"
+                        name="email"
+                        autocomplete="email"
+                        placeholder="Email address"
+                        required
+                    >
+
+                    <button
+                        class="button button-light"
+                        type="submit"
+                    >
+                        Subscribe
+                    </button>
+
+                </div>
+
+                {% if messages %}
+
+                    {% for message in messages %}
+
+                        <p
+                            class="form-message {{ message.tags }}"
+                            role="status"
+                        >
+                            {{ message }}
+                        </p>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            </form>
+
+        </section>
+
+
+        {# --------------------------
+           Footer Navigation
+        --------------------------- #}
+        <div class="shell footer-grid">
+
+            <div>
+
+                <a
+                    class="brand"
+                    href="{% url 'mainsite:index' %}"
+                >
+                    KINGS.CO
+                </a>
+
+                <p>
+                    Clothes that suit your style—and your life.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h2>Shop</h2>
+
+                <a href="{% url 'mainsite:categories' %}">
+                    All Products
+                </a>
+
+                <a href="{% url 'mainsite:index' %}#new-arrivals">
+                    New Arrivals
+                </a>
+
+            </div>
+
+            <div>
+
+                <h2>Help</h2>
+
+                <a href="mailto:hello@kings.co">
+                    Contact Us
+                </a>
+
+                <a href="{% url 'mainsite:checkout' %}">
+                    Shipping & Returns
+                </a>
+
+            </div>
+
         </div>
+
+
+        {# --------------------------
+           Footer Bottom
+        --------------------------- #}
+        <div class="shell footer-bottom">
+
+            <span>
+                © {% now "Y" %} Kings.co.
+                All rights reserved.
+            </span>
+
+            <img
+                src="{% static 'image/bank_method.svg' %}"
+                alt="Accepted payment methods"
+                width="220"
+                height="40"
+                loading="lazy"
+            >
+
+        </div>
+
     </footer>
+
+
+    {# ======================================================
+       Toast Notifications
+    ======================================================= #}
+    <div
+        class="toast-region"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+
+    {# ======================================================
+       JavaScript
+    ======================================================= #}
+    <script
+        src="{% static 'js/storefront.js' %}"
+        defer
+    ></script>
+
+    {% block scripts %}
+    {% endblock %}
+
 </body>
+
 </html>

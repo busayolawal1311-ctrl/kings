@@ -1,0 +1,32 @@
+{% extends 'shared/mainlayout.html' %}
+{% block title %}Sign in{% endblock %}
+
+{% block content %}
+<div class="min-h-[70vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-[20px] shadow-2xl border border-gray-100">
+        
+        <div>
+            <h2 class="mt-6 text-center text-4xl font-black text-black uppercase">
+                Welcome Back
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Sign in to your Kings account
+            </p>
+        </div>
+
+        <form class="mt-8 space-y-6" method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            {% if form.non_field_errors %}<div class="p-3 bg-red-100 text-red-800 rounded-md text-sm text-center font-semibold">{{ form.non_field_errors }}</div>{% endif %}
+            <div class="space-y-4"><div><label for="{{ form.username.id_for_label }}">Username</label>{{ form.username }}</div><div><label for="{{ form.password.id_for_label }}">Password</label>{{ form.password }}</div><label class="flex items-center gap-2 text-sm">{{ form.remember_me }} Remember me</label></div>
+
+            <div>
+                <button type="submit" 
+                    class="group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-semibold rounded-full text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors">
+                    Sign In
+                </button>
+            </div>
+            <p class="text-center text-sm"><a class="text-link" href="{% url 'password_reset' %}">Forgot password?</a></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,198 +1,416 @@
-{% extends "shared/mainlayout.html" %}
+{% extends 'shared/mainlayout.html' %}
+
+{# ==========================================================
+   Product Detail Page
+   Displays detailed information about a single product,
+   customer reviews, review form, and related products.
+========================================================== #}
 
 {% block title %}
-{% if product %}{{ product.name }}{% else %}Product{% endif %}
-{% endblock title %}
+
+    {% if product %}
+        {{ product.name }}
+    {% else %}
+        Product
+    {% endif %}
+
+{% endblock %}
+
 
 {% block content %}
-{% if product %}
-    <section class="py-6 border-t">
-        <div class="max-w-7xl mx-auto px-6">
-            <a href="{% url 'mainsite:index' %}">Home</a>
-            <span>></span>
-            <a href="{% url 'mainsite:categories' %}">Shop</a>
-            <span>></span>
-            <a href="{% url 'mainsite:category_detail' product.category.slug %}">{{ product.category.name }}</a>
-            <span>></span>
-            <span class="text-black">{{ product.name }}</span>
-        </div>
-    </section>
 
-    <section class="pb-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-10">
-                <div class="bg-[#F0EEED] rounded-3xl p-8">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-150 object-contain">
+    {% if product %}
+
+        {# ==================================================
+           Breadcrumb Navigation
+        =================================================== #}
+        <div class="shell breadcrumbs">
+
+            <a href="{% url 'mainsite:index' %}">
+                Home
+            </a>
+
+            <span>/</span>
+
+            <a href="{% url 'mainsite:categories' %}">
+                Shop
+            </a>
+
+            <span>/</span>
+
+            <span>
+                {{ product.name }}
+            </span>
+
+        </div>
+
+
+        {# ==================================================
+           Product Overview
+           Displays gallery, pricing, purchase controls,
+           and delivery information.
+        =================================================== #}
+        <section class="shell product-detail">
+
+            {# --------------------------
+               Product Gallery
+            --------------------------- #}
+            <div class="product-gallery">
+
+                <div class="product-image">
+
+                    <img
+                        src="{{ product.image.url }}"
+                        alt="{{ product.name }}"
+                        width="720"
+                        height="860"
+                    >
+
                 </div>
 
-                <div>
-                    <h1 class="text-5xl font-black uppercase">
-                        {{ product.name }}
-                    </h1>
+            </div>
 
-                    <div class="flex items-center gap-4 mt-4">
-                        <span class="text-yellow-500">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-                        <span>{{ product.rating }}/5</span>
-                    </div>
 
-                    <div class="flex items-center gap-4 mt-4">
-                        <span class="text-4xl font-bold">
-                            &#8358;{{ product.price }}
-                        </span>
-                        {% if product.old_price %}
-                            <span class="text-4xl text-gray-400 line-through">
-                                &#8358;{{ product.old_price }}
-                            </span>
-                        {% endif %}
-                        {% if product.badge %}
-                            <span class="bg-red-200 text-red-500 px-3 py-1 rounded-full">
-                                {{ product.badge }}
-                            </span>
-                        {% endif %}
-                    </div>
+            {# --------------------------
+               Product Information
+            --------------------------- #}
+            <div class="product-info">
 
-                    {% if product.description %}
-                        <p class="mt-6 text-gray-500 max-w-lg">
-                            {{ product.description }}
-                        </p>
+                <p class="eyebrow">
+                    {{ product.category.name }}
+                </p>
+
+                <h1>
+                    {{ product.name }}
+                </h1>
+
+                <p
+                    class="rating"
+                    aria-label="Rated {{ product.average_rating }} out of 5"
+                >
+                    ★★★★★
+
+                    <span>
+                        {{ product.average_rating|floatformat:1 }}
+                        ·
+                        {{ product.total_reviews }}
+                        review{{ product.total_reviews|pluralize }}
+                    </span>
+
+                </p>
+
+                <p class="price">
+
+                    ₦{{ product.price }}
+
+                    {% if product.old_price %}
+
+                        <del>
+                            ₦{{ product.old_price }}
+                        </del>
+
                     {% endif %}
 
-                    <hr class="my-8 border-gray-200">
+                </p>
 
-                    <div>
-                        <p class="text-gray-500 mb-4">
-                            Choose Size
-                        </p>
-                        <div class="flex flex-wrap gap-3">
-                            <button class="px-6 py-3 rounded-full bg-gray-100">Small</button>
-                            <button class="px-6 py-3 rounded-full bg-gray-100">Medium</button>
-                            <button class="px-6 py-3 rounded-full bg-gray-100">Large</button>
-                            <button class="px-6 py-3 rounded-full bg-gray-100">X-Large</button>
-                        </div>
-                    </div>
+                {% if product.description %}
 
-                    <hr class="my-8 border-gray-200">
+                    <p class="product-description">
+                        {{ product.description }}
+                    </p>
 
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <div class="flex items-center justify-between bg-gray-100 rounded-full px-6 py-6 min-w-42">
-                            <button class="text-xl font-bold">-</button>
-                            <span class="font-medium">1</span>
-                            <button class="text-xl font-bold">+</button>
-                        </div>
+                {% endif %}
 
-                        <button class="flex-1 bg-black text-white rounded-full py-4 font-medium hover:bg-gray-800 transition">
-                            Add to Cart
+                <p class="stock-note">
+                    ● In Stock · Ready to Dispatch
+                </p>
+
+
+                {# --------------------------
+                   Size Selection
+                --------------------------- #}
+                <div class="choice-group">
+
+                    <span>Size</span>
+
+                    <div
+                        role="radiogroup"
+                        aria-label="Choose a size"
+                    >
+
+                        <button
+                            type="button"
+                            class="size-choice"
+                            aria-pressed="true"
+                        >
+                            S
                         </button>
+
+                        <button
+                            type="button"
+                            class="size-choice"
+                            aria-pressed="false"
+                        >
+                            M
+                        </button>
+
+                        <button
+                            type="button"
+                            class="size-choice"
+                            aria-pressed="false"
+                        >
+                            L
+                        </button>
+
+                        <button
+                            type="button"
+                            class="size-choice"
+                            aria-pressed="false"
+                        >
+                            XL
+                        </button>
+
                     </div>
+
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="pb-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between text-center border-b">
-                <button class="flex-1 py-4 text-gray-500 hover:border-b-2 hover:border-black">
-                    Product Details
-                </button>
-                <button class="flex-1 py-4 border-b-2 border-black font-medium">
-                    Rating & Reviews
-                </button>
-                <button class="flex-1 py-4 text-gray-500 hover:border-b-2 hover:border-black">
-                    FAQs
-                </button>
+
+                {# --------------------------
+                   Purchase Controls
+                --------------------------- #}
+                <div class="purchase-row">
+
+                    <div class="quantity-control">
+
+                        <button
+                            type="button"
+                            aria-label="Decrease Quantity"
+                            data-quantity-minus
+                        >
+                            −
+                        </button>
+
+                        <output data-quantity>
+                            1
+                        </output>
+
+                        <button
+                            type="button"
+                            aria-label="Increase Quantity"
+                            data-quantity-plus
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                    <button
+                        class="button add-to-cart"
+                        type="button"
+                        data-cart-url="{% url 'mainsite:cart_add' product.pk %}"
+                        data-product-name="{{ product.name }}"
+                        data-quantity-source
+                    >
+                        Add to Bag
+                    </button>
+
+                </div>
+
+
+                {# --------------------------
+                   Delivery Information
+                --------------------------- #}
+                <details>
+
+                    <summary>
+                        Delivery & Returns
+                    </summary>
+
+                    <p>
+                        Free standard delivery on orders over ₦50,000.
+                        Unworn items may be returned within 14 days.
+                    </p>
+
+                </details>
+
             </div>
 
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4 mt-8">
-                <h2 class="text-3xl font-bold">
-                    All Reviews
-                    <span class="text-gray-500 text-lg">({{ product.review_count }})</span>
+        </section>
+
+
+        {# ==================================================
+           Product Details & Reviews
+        =================================================== #}
+        <section class="shell section product-tabs">
+
+            <div>
+
+                <h2>
+                    Details
                 </h2>
 
-                <div class="flex gap-3">
-                    <button class="bg-gray-100 px-4 py-3 rounded-full">&#9881;</button>
-                    <button class="bg-gray-100 px-6 py-3 rounded-full">Latest &#9662;</button>
-                    <button class="bg-black text-white px-6 py-3 rounded-full">Write a Review</button>
-                </div>
+                <p>
+                    {{ product.description|default:"Thoughtfully selected for comfort, versatility, and lasting style." }}
+                </p>
+
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6 mt-8">
-                <div class="border border-gray-200 rounded-3xl p-6">
-                    <div class="flex justify-between items-center">
-                        <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                        <button>&#8942;</button>
-                    </div>
-                    <h3 class="font-bold text-xl mt-4">Busayo L. &#10003;</h3>
-                    <p class="text-gray-500 mt-4">
-                        I absolutely love this item. The design is unique and the fabric feels comfortable.
-                    </p>
-                    <p class="text-gray-400 mt-6">Posted on August 14, 2023</p>
-                </div>
 
-                <div class="border border-gray-200 rounded-3xl p-6">
-                    <div class="flex justify-between items-center">
-                        <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-                        <button>&#8942;</button>
-                    </div>
-                    <h3 class="font-bold text-xl mt-4">Samantha D. &#10003;</h3>
-                    <p class="text-gray-500 mt-4">
-                        Great quality and the fit is exactly what I expected.
+            <div>
+
+                <h2>
+                    Reviews
+                    <span>({{ product.total_reviews }})</span>
+                </h2>
+
+                {% for review in reviews %}
+
+                    <article class="review">
+
+                        <p class="rating">
+                            ★★★★★
+                        </p>
+
+                        <h3>
+                            {{ review.title|default:"Verified Customer Review" }}
+                        </h3>
+
+                        <p>
+                            {{ review.comment }}
+                        </p>
+
+                        <footer>
+                            {{ review.name }}
+                            ·
+                            {{ review.created_at|date:"M Y" }}
+                        </footer>
+
+                    </article>
+
+                {% empty %}
+
+                    <p>
+                        Be the first to share your experience.
                     </p>
-                    <p class="text-gray-400 mt-6">Posted on August 14, 2023</p>
-                </div>
+
+                {% endfor %}
+
             </div>
-        </div>
-    </section>
 
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-5xl font-black text-center mb-16">
-                YOU MIGHT ALSO LIKE
+        </section>
+
+
+        {# ==================================================
+           Customer Review Form
+        =================================================== #}
+        <section class="shell section review-form">
+
+            <h2>
+                Write a Review
             </h2>
 
-            {% if related_products %}
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {% for product in related_products %}
-                        {% include "mainsite/partials/product_card.html" %}
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p class="text-center text-gray-500">Add more products to show related items.</p>
-            {% endif %}
-        </div>
-    </section>
-{% else %}
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-5xl font-black">No products yet</h1>
-            <p class="text-gray-500 mt-4">
-                Add products in the Django admin and they will show up here automatically.
-            </p>
-            <a href="{% url 'mainsite:categories' %}" class="inline-block mt-8 bg-black text-white px-12 py-4 rounded-full">
-                Back to Shop
-            </a>
-        </div>
-    </section>
-{% endif %}
+            <form method="post">
 
-<section class="relative z-10 p-15">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="bg-black rounded-[20px] p-8 lg:p-12">
-            <div class="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h2 class="text-white text-4xl lg:text-5xl font-black uppercase">
-                        Stay Up To Date About Our Latest Offers
-                    </h2>
+                {% csrf_token %}
+
+                {{ review_form.non_field_errors }}
+
+                <div class="form-grid">
+
+                    <label>
+                        Your Name
+                        {{ review_form.name }}
+                    </label>
+
+                    <label>
+                        Email (Optional)
+                        {{ review_form.email }}
+                    </label>
+
                 </div>
 
-                <div class="space-y-4">
-                    <input type="email" placeholder="Enter your email address" class="w-full rounded-full px-6 py-4 bg-white outline-none">
-                    <button class="w-full bg-white rounded-full py-4 font-semibold">
-                        Subscribe to Newsletter
-                    </button>
-                </div>
+                <fieldset>
+
+                    <legend>
+                        Rating
+                    </legend>
+
+                    {{ review_form.rating }}
+
+                </fieldset>
+
+                <label>
+                    Review Title
+                    {{ review_form.title }}
+                </label>
+
+                <label>
+                    Your Review
+                    {{ review_form.comment }}
+                </label>
+
+                <button
+                    class="button"
+                    type="submit"
+                >
+                    Submit Review
+                </button>
+
+            </form>
+
+        </section>
+
+
+        {# ==================================================
+           Related Products
+        =================================================== #}
+        <section class="shell section">
+
+            <div class="section-heading">
+
+                <h2>
+                    You May Also Like
+                </h2>
+
             </div>
-        </div>
-    </div>
-</section>
-{% endblock content %}
+
+            <div class="product-grid">
+
+                {% for product in related_products %}
+
+                    {% include 'mainsite/partials/product_card.html' %}
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    {% else %}
+
+        {# ==================================================
+           Empty State
+           Displayed when no product exists.
+        =================================================== #}
+        <section class="shell section empty-state">
+
+            <h1>
+                No Products Yet
+            </h1>
+
+            <p>
+                Add products in Django Admin to start building your collection.
+            </p>
+
+            <a
+                class="button"
+                href="{% url 'mainsite:categories' %}"
+            >
+                Browse Shop
+            </a>
+
+        </section>
+
+    {% endif %}
+
+{% endblock %}

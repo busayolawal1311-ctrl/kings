@@ -1,0 +1,155 @@
+{% extends 'shared/mainlayout.html' %}
+
+{# ==========================================================
+   User Registration Page
+   Allows new customers to create an account and begin
+   shopping on the Kings platform.
+========================================================== #}
+
+{% block title %}
+    Create an Account
+{% endblock %}
+
+
+{% block content %}
+
+    {# ======================================================
+       Registration Form
+    ======================================================= #}
+    <main class="min-h-[70vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+
+        <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-[20px] shadow-2xl border border-gray-100">
+
+            {# --------------------------
+               Page Header
+            --------------------------- #}
+            <header>
+
+                <h1 class="mt-6 text-center text-4xl font-black uppercase text-black">
+                    Create Account
+                </h1>
+
+                <p class="mt-2 text-center text-sm text-gray-600">
+                    Join Kings and start shopping.
+                </p>
+
+            </header>
+
+
+            {# --------------------------
+               Registration Form
+            --------------------------- #}
+            <form
+                method="post"
+                action="{% url 'mainsite:signup' %}"
+                class="mt-8 space-y-6"
+            >
+
+                {% csrf_token %}
+
+                {# Display form-wide validation errors #}
+                {{ form.non_field_errors }}
+
+                <div class="space-y-4">
+
+                    {% for field in form %}
+
+                        <div>
+
+                            <label
+                                for="{{ field.id_for_label }}"
+                                class="block mb-1 text-sm font-medium text-gray-700"
+                            >
+                                {{ field.label }}
+                            </label>
+
+                            {{ field }}
+
+                            {% if field.errors %}
+
+                                <p class="mt-1 text-xs italic text-red-500">
+                                    {{ field.errors.0 }}
+                                </p>
+
+                            {% endif %}
+
+                            {% if field.help_text %}
+
+                                <p class="mt-1 text-xs text-gray-400">
+                                    {{ field.help_text }}
+                                </p>
+
+                            {% endif %}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                {# --------------------------
+                   Submit Button
+                --------------------------- #}
+                <button
+                    type="submit"
+                    class="group relative flex w-full justify-center rounded-full bg-black px-4 py-4 text-sm font-semibold text-white transition-colors hover:bg-gray-900"
+                >
+                    Create Account
+                </button>
+
+
+                {# --------------------------
+                   Login Link
+                --------------------------- #}
+                <p class="text-center text-sm text-gray-600">
+
+                    Already have an account?
+
+                    <a
+                        href="{% url 'login' %}"
+                        class="font-bold text-black hover:underline"
+                    >
+                        Log in here
+                    </a>
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    {# ======================================================
+       Temporary Form Styling
+
+       NOTE:
+       These styles should eventually be moved into the
+       project's main stylesheet (e.g., styles.css or
+       Tailwind component layer) to keep templates clean.
+    ======================================================= #}
+    <style>
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 9999px;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #000;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+        }
+
+    </style>
+
+{% endblock %}

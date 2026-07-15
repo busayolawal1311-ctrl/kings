@@ -1,202 +1,348 @@
-{% extends "shared/mainlayout.html" %}
+﻿{% extends 'shared/mainlayout.html' %}
 {% load static %}
 
+{# ==========================================================
+   Home Page
+   Landing page showcasing featured products, categories,
+   brands, and customer testimonials.
+========================================================== #}
+
 {% block title %}
-Home
-{% endblock title %}
+    Premium Everyday Fashion
+{% endblock %}
+
 
 {% block content %}
-<section class="bg-[#F2F0F1] overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="grid lg:grid-cols-2 items-center min-h-162.5">
-            <div>
-                <h1 class="text-5xl lg:text-7xl font-black uppercase leading-none max-w-xl">
-                    Find Clothes
-                    That Matches
-                    Your Style
-                </h1>
-                <p class="mt-8 text-gray-500 max-w-lg">
-                    Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
+
+    {# ======================================================
+       Hero Section
+       Primary marketing banner with the main call-to-action.
+    ======================================================= #}
+    <section class="hero">
+
+        <div class="shell hero-grid">
+
+            <div class="hero-copy">
+
+                <p class="eyebrow">
+                    The New Edit Is Here
                 </p>
-                <a href="{% url 'mainsite:categories' %}" class="inline-block mt-8 bg-black text-white px-12 py-4 rounded-full hover:bg-gray-800 transition">
-                    Shop Now
+
+                <h1>
+                    Style That Feels Like You.
+                </h1>
+
+                <p>
+                    Meticulously selected pieces that make getting dressed
+                    the best part of your day.
+                </p>
+
+                <a
+                    class="button"
+                    href="{% url 'mainsite:categories' %}"
+                >
+                    Shop the Collection
+                    <span aria-hidden="true">→</span>
                 </a>
 
-                <div class="flex flex-wrap gap-8 mt-14">
+                <dl class="hero-stats">
+
                     <div>
-                        <h2 class="text-4xl font-bold">200+</h2>
-                        <p class="text-gray-500 text-sm">International Brands</p>
+                        <dt>200+</dt>
+                        <dd>International Brands</dd>
                     </div>
-                    <div class="pl-8">
-                        <h2 class="text-4xl font-bold">2,000+</h2>
-                        <p class="text-gray-500 text-sm">High-Quality Products</p>
+
+                    <div>
+                        <dt>2,000+</dt>
+                        <dd>Curated Products</dd>
                     </div>
-                    <div class="pl-8">
-                        <h2 class="text-4xl font-black">30,000+</h2>
-                        <p class="text-gray-500 text-sm">Happy Customers</p>
+
+                    <div>
+                        <dt>30,000+</dt>
+                        <dd>Happy Customers</dd>
                     </div>
-                </div>
+
+                </dl>
+
             </div>
 
-            <div class="relative flex justify-center items-end">
-                <div class="absolute left-10 top-1/2 text-4xl">&#10022;</div>
-                <div class="absolute right-10 top-16 text-7xl">&#10022;</div>
-                <img src="{% static "image/hero_image.png" %}" alt="Fashion Models" class="w-full">
+
+            <div class="hero-image">
+
+                <img
+                    src="{% static 'image/hero_image.png' %}"
+                    alt="Two models wearing the Kings.co collection"
+                    width="720"
+                    height="740"
+                    fetchpriority="high"
+                >
+
             </div>
+
         </div>
-    </div>
-</section>
 
-<section id="brands" class="bg-black py-12 overflow-hidden">
-    <div class="flex marquee gap-16">
-        <img src="{% static "image/versace.svg" %}" alt="Versace" class="h-8 shrink-0">
-        <img src="{% static "image/zara.svg" %}" alt="Zara" class="h-8 shrink-0">
-        <img src="{% static "image/gucci.svg" %}" alt="Gucci" class="h-8 shrink-0">
-        <img src="{% static "image/prada.svg" %}" alt="Prada" class="h-8 shrink-0">
-        <img src="{% static "image/calvin.svg" %}" alt="Calvin Klein" class="h-8 shrink-0">
-        <img src="{% static "image/versace.svg" %}" alt="Versace" class="h-8 shrink-0">
-        <img src="{% static "image/zara.svg" %}" alt="Zara" class="h-8 shrink-0">
-        <img src="{% static "image/gucci.svg" %}" alt="Gucci" class="h-8 shrink-0">
-        <img src="{% static "image/prada.svg" %}" alt="Prada" class="h-8 shrink-0">
-        <img src="{% static "image/calvin.svg" %}" alt="Calvin Klein" class="h-8 shrink-0">
-    </div>
-</section>
+    </section>
 
-<section id="new-arrivals" class="py-20">
-    <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-5xl font-black text-center mb-16">
-            NEW ARRIVALS
-        </h2>
+
+    {# ======================================================
+       Featured Brands
+       Displays trusted fashion brands carried by the store.
+    ======================================================= #}
+    <section
+        id="brands"
+        class="brand-strip"
+        aria-label="Featured Brands"
+    >
+
+        <div class="shell">
+
+            <img src="{% static 'image/versace.svg' %}" alt="Versace">
+            <img src="{% static 'image/zara.svg' %}" alt="Zara">
+            <img src="{% static 'image/gucci.svg' %}" alt="Gucci">
+            <img src="{% static 'image/prada.svg' %}" alt="Prada">
+            <img src="{% static 'image/calvin.svg' %}" alt="Calvin Klein">
+
+        </div>
+
+    </section>
+
+
+    {# ======================================================
+       New Arrivals
+       Displays the latest products added to the catalogue.
+    ======================================================= #}
+    <section
+        id="new-arrivals"
+        class="section shell"
+    >
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    Just Landed
+                </p>
+
+                <h2>
+                    New Arrivals
+                </h2>
+
+            </div>
+
+            <a
+                class="text-link"
+                href="{% url 'mainsite:categories' %}"
+            >
+                View All
+                <span aria-hidden="true">→</span>
+            </a>
+
+        </div>
 
         {% if new_arrivals %}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <div class="product-grid">
+
                 {% for product in new_arrivals %}
-                    {% include "mainsite/partials/product_card.html" %}
+
+                    {% include 'mainsite/partials/product_card.html' %}
+
                 {% endfor %}
+
             </div>
+
         {% else %}
-            <p class="text-center text-gray-500">No new arrivals have been added yet.</p>
+
+            <p class="empty-state">
+                New arrivals will be here soon.
+            </p>
+
         {% endif %}
 
-        <div class="text-center mt-12">
-            <a href="{% url 'mainsite:categories' %}" class="inline-block border px-12 py-4 rounded-full">
-                View All
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="py-20">
-    <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-5xl font-black text-center mb-16">
-            TOP SELLING
-        </h2>
+
+    {# ======================================================
+       Best Sellers
+       Highlights the store's highest-performing products.
+    ======================================================= #}
+    <section class="section shell">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    Loved by You
+                </p>
+
+                <h2>
+                    Top Selling
+                </h2>
+
+            </div>
+
+            <a
+                class="text-link"
+                href="{% url 'mainsite:categories' %}"
+            >
+                View All
+                <span aria-hidden="true">→</span>
+            </a>
+
+        </div>
 
         {% if top_selling %}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <div class="product-grid">
+
                 {% for product in top_selling %}
-                    {% include "mainsite/partials/product_card.html" %}
+
+                    {% include 'mainsite/partials/product_card.html' %}
+
                 {% endfor %}
+
             </div>
+
         {% else %}
-            <p class="text-center text-gray-500">No top selling products have been added yet.</p>
+
+            <p class="empty-state">
+                Bestsellers will be here soon.
+            </p>
+
         {% endif %}
 
-        <div class="text-center mt-12">
-            <a href="{% url 'mainsite:categories' %}" class="inline-block border px-12 py-4 rounded-full">
-                View All
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section>
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="bg-[#F0EEED] rounded-[40px] p-8 md:p-12">
-            <h2 class="text-4xl md:text-5xl font-black text-center mb-12">
-                BROWSE BY DRESS STYLE
-            </h2>
+
+    {# ======================================================
+       Shop by Category
+       Allows customers to browse products by category.
+    ======================================================= #}
+    <section class="section shell">
+
+        <div class="style-panel">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        Find Your Fit
+                    </p>
+
+                    <h2>
+                        Shop by Style
+                    </h2>
+
+                </div>
+
+            </div>
 
             {% if categories %}
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <div class="category-grid">
+
                     {% for category in categories %}
-                        <a href="{% url 'mainsite:category_detail' category.slug %}" class="bg-white rounded-3xl overflow-hidden relative h-72 {% cycle '' 'lg:col-span-2' 'lg:col-span-2' '' %}">
+
+                        <a
+                            href="{% url 'mainsite:category_detail' category.slug %}"
+                            class="category-card"
+                        >
+
                             {% if category.image %}
-                                <img src="{{ category.image.url }}" alt="{{ category.name }}" class="w-full h-full object-cover">
-                            {% else %}
-                                <div class="w-full h-full bg-white"></div>
+
+                                <img
+                                    src="{{ category.image.url }}"
+                                    alt="{{ category.name }}"
+                                    loading="lazy"
+                                >
+
                             {% endif %}
-                            <h3 class="absolute top-6 left-6 text-3xl font-bold">
+
+                            <span>
                                 {{ category.name }}
-                            </h3>
+                            </span>
+
                         </a>
+
                     {% endfor %}
+
                 </div>
-            {% else %}
-                <p class="text-center text-gray-500">Add categories in the admin to show dress styles here.</p>
+
             {% endif %}
-        </div>
-    </div>
-</section>
 
-<section>
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="flex justify-between items-center mb-12 p-10">
-            <h2 class="text-4xl md:text-5xl font-black">
-                OUR HAPPY CUSTOMERS
-            </h2>
-            <div class="flex gap-4">
-                <button class="text-3xl">&larr;</button>
-                <button class="text-3xl">&rarr;</button>
+        </div>
+
+    </section>
+
+
+    {# ======================================================
+       Customer Testimonials
+       Provides social proof and increases buyer confidence.
+    ======================================================= #}
+    <section class="section shell">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    Reviews
+                </p>
+
+                <h2>
+                    Worn and Loved
+                </h2>
+
             </div>
-        </div>
-    </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="border rounded-3xl p-8">
-            <div class="text-yellow-500 text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <h3 class="font-bold text-xl mt-4">Sarah M.</h3>
-            <p class="text-gray-500 mt-4">
-                I'm blown away by the quality and style of the clothes I received. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.
-            </p>
         </div>
 
-        <div class="border rounded-3xl p-8">
-            <div class="text-yellow-500 text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <h3 class="font-bold text-xl mt-4">Alex K.</h3>
-            <p class="text-gray-500 mt-4">
-                Finding clothes that align with my personal style used to be a challenge until I discovered this store.
-            </p>
+        <div class="testimonial-grid">
+
+            <blockquote>
+
+                <p>
+                    “The quality is incredible and everything feels easy to wear.”
+                </p>
+
+                <footer>
+                    Sarah M.
+                    <span>Verified Customer</span>
+                </footer>
+
+            </blockquote>
+
+            <blockquote>
+
+                <p>
+                    “My go-to place when I want something special without overthinking it.”
+                </p>
+
+                <footer>
+                    Alex K.
+                    <span>Verified Customer</span>
+                </footer>
+
+            </blockquote>
+
+            <blockquote>
+
+                <p>
+                    “Exactly the kind of pieces I keep reaching for.”
+                </p>
+
+                <footer>
+                    James L.
+                    <span>Verified Customer</span>
+                </footer>
+
+            </blockquote>
+
         </div>
 
-        <div class="border rounded-3xl p-8">
-            <div class="text-yellow-500 text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <h3 class="font-bold text-xl mt-4">James L.</h3>
-            <p class="text-gray-500 mt-4">
-                As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon this platform.
-            </p>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="relative z-10 p-15">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="bg-black rounded-[20px] p-8 lg:p-12">
-            <div class="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h2 class="text-white text-4xl lg:text-5xl font-black uppercase">
-                        Stay Up To Date About Our Latest Offers
-                    </h2>
-                </div>
-
-                <div class="space-y-4">
-                    <input type="email" placeholder="Enter your email address" class="w-full rounded-full px-6 py-4 bg-white outline-none">
-                    <button class="w-full bg-white rounded-full py-4 font-semibold">
-                        Subscribe to Newsletter
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-{% endblock content %}
+{% endblock %}

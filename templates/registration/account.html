@@ -1,0 +1,123 @@
+{% extends 'shared/mainlayout.html' %}
+
+{# ==========================================================
+   My Account Page
+   Displays the authenticated user's account overview,
+   including recent orders and saved addresses.
+========================================================== #}
+
+{% block title %}
+    My Account
+{% endblock %}
+
+
+{% block content %}
+
+    {# ======================================================
+       Account Dashboard
+    ======================================================= #}
+    <section class="shell section">
+
+        <p class="eyebrow">
+            Account
+        </p>
+
+        <h1>
+            Welcome, {{ user.get_username }}
+        </h1>
+
+
+        <div class="product-tabs">
+
+            {# ==================================================
+               Recent Orders
+               Displays the customer's latest purchases.
+            =================================================== #}
+            <div>
+
+                <h2>
+                    Recent Orders
+                </h2>
+
+                {% for order in orders %}
+
+                    <article class="review">
+
+                        <h3>
+                            {{ order.number }}
+                        </h3>
+
+                        <p>
+                            {{ order.get_status_display }}
+                            ·
+                            ₦{{ order.total }}
+                        </p>
+
+                        <footer>
+                            {{ order.created_at|date:"M d, Y" }}
+                        </footer>
+
+                    </article>
+
+                {% empty %}
+
+                    <p>
+                        You have not placed any orders yet.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+
+            {# ==================================================
+               Saved Addresses
+               Displays the customer's saved delivery addresses.
+            =================================================== #}
+            <div>
+
+                <h2>
+                    Saved Addresses
+                </h2>
+
+                {% for address in addresses %}
+
+                    <article class="review">
+
+                        <h3>
+                            {{ address.label }}
+                        </h3>
+
+                        <p>
+                            {{ address.recipient_name }}<br>
+                            {{ address.line_1 }}, {{ address.city }}
+                        </p>
+
+                    </article>
+
+                {% empty %}
+
+                    <p>
+                        You have no saved addresses.
+                    </p>
+
+                {% endfor %}
+
+
+                {# --------------------------
+                   Account Security
+                --------------------------- #}
+                <a
+                    class="button"
+                    href="{% url 'password_change' %}"
+                >
+                    Change Password
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

@@ -1,254 +1,186 @@
-{% extends "shared/mainlayout.html" %}
-
-{% load static %}
+{% extends 'shared/mainlayout.html' %}
 
 {% block title %}
-Checkout
-{% endblock title %}
-
+    Your Bag
+{% endblock %}
 
 {% block content %}
-<hr class="my-6 border-gray-200">
 
-    <section class="py-6">
-        <!-- Breadcrumbs -->
-        <div class="max-w-7xl mx-auto px-6">
-            <a href="{% url 'mainsite:index' %}">Home</a>
-                <span>></span>
-                <span class="text-black">Cart</span>
+<div class="shell breadcrumbs">
+    <a href="{% url 'mainsite:index' %}">Home</a>
+    <span>/</span>
+    <span>Your Bag</span>
+</div>
 
-                <h1 class="text-6xl font-black mt-8">
-                    YOUR CART
-                </h1>
+<section class="shell section">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Your Selection</p>
+            <h1>Shopping Bag</h1>
         </div>
-    </section>
+    </div>
 
-    <!-- Cart Section -->
-    <section class="pb-20">
+    {% if cart_items %}
 
-        <div class="max-w-7xl mx-auto px-6">
-            <!-- Cart container -->
-            <div class="grid lg:grid-cols-3 gap-8">
+        <div class="cart-layout">
 
-                <!-- Cart Items -->
-                 <div class="lg:col-span-2 border rounded-3xl p-6">
+            <div class="cart-items">
 
-                    <!-- Items 1 -->
-                     <div class="flex gap-4 items-center">
+                {% for item in cart_items %}
 
-                        <div class="bg-[#F0EEED] rounded-2xl p-4">
-                            <img src="{% static "image/c_1.png" %}" alt="" class="w-24">
-                        </div>
+                    <article
+                        class="cart-item"
+                        data-cart-item
+                        data-update-url="{% url 'mainsite:cart_update' item.product.pk %}"
+                    >
 
-                        <div class="flex-1">
-                            <h3 class="text-2xl font-bold">
-                                Gradient Graphic T-Shirt
-                            </h3>
-
-                            <p class="text-gray-500">
-                                Size: Large
-                            </p>
-
-                            <p class="text-gray-500">
-                                Color: White
-                            </p>
-
-                            <div class="mt-3 text-3xl font-bold">
-                                &#8358;145
-                            </div>
-
-                        </div>
-
-                        <div class="text-right">
-                            <button class="text-red-500 text-xl">
-                                &#128465;
-                            </button>
-
-                            <div class="flex items-center gap-4 bg-gray-100 px-4 py-2 rounded-full">
-                                <button class="text-2xl">-</button>
-                                <span class="text-xl font-bold">1</span>
-                                <button class="text-2xl">+</button>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <hr class="my-6 border-gray-200">
-
-                    <!-- item 2 -->
-                    <div class="flex gap-4 items-center">
-
-                        <div class="bg-[#F0EEED] rounded-2xl p-4">
-                            <img src="{% static "image/c_2.png" %}" alt="" class="w-24">
-                        </div>
-
-                        <div class="flex-1">
-                            <h3 class="text-2xl font-bold">
-                                Gradient Graphic T-Shirt
-                            </h3>
-
-                            <p class="text-gray-500">
-                                Size: Large
-                            </p>
-
-                            <p class="text-gray-500">
-                                Color: White
-                            </p>
-
-                            <div class="mt-3 text-3xl font-bold">
-                                &#8358;145
-                            </div>
-
-                        </div>
-
-                        <div class="text-right">
-                            <button class="text-red-500 text-xl">
-                                &#128465;
-                            </button>
-
-                            <div class="flex items-center gap-4 bg-gray-100 px-4 py-2 rounded-full">
-                                <button class="text-2xl">-</button>
-                                <span class="text-xl font-bold">1</span>
-                                <button class="text-2xl">+</button>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <hr class="my-6 border-gray-200">
-
-                    <!-- items 3 -->
-                    <div class="flex gap-4 items-center">
-
-                        <div class="bg-[#F0EEED] rounded-2xl p-4">
-                            <img src="{% static "image/c_3.png" %}" alt="" class="w-24">
-                        </div>
-
-                        <div class="flex-1">
-                            <h3 class="text-2xl font-bold">
-                                Gradient Graphic T-Shirt
-                            </h3>
-
-                            <p class="text-gray-500">
-                                Size: Large
-                            </p>
-
-                            <p class="text-gray-500">
-                                Color: White
-                            </p>
-
-                            <div class="mt-3 text-3xl font-bold">
-                                &#8358;145
-                            </div>
-
-                        </div>
-
-                        <div class="text-right">
-                            <button class="text-red-500 text-xl">
-                                &#128465;
-                            </button>
-
-                            <div class="flex items-center gap-4 bg-gray-100 px-4 py-2 rounded-full">
-                                <button class="text-2xl">-</button>
-                                <span class="text-xl font-bold">1</span>
-                                <button class="text-2xl">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Order Summary -->
-                 <div class="border rounded-3xl p-6 h-fit">
-                    <h2>
-                        Order Summary
-                    </h2>
-
-                    <div class="space-y-5">
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">Subtotal</span>
-                            <span class="font-bold">&#8358;435</span>
-                        </div>
-
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">Discount (-20%)</span>
-                            <span class="text-red-500 font-bold">-&#8358;87</span>
-                        </div>
-
-                        <div class="flex justify-between">
-                            <span class="text-gray-500">Delivery Fee</span>
-                            <span class="font-bold">&#8358;15</span>
-                        </div>
-
-                    </div>
-                    <hr class="my-6 border-gray-200">
-
-                    <div class="flex justify-between text-3xl font-bold">
-                        <span>Total</span>
-                        <span>&#8358;363</span>
-                    </div>
-
-                    <!-- Promo code -->
-                     <div class="flex gap-3 mt-8">
-
-                        <input type="text"
-                        placeholder="Add Promo code"
-                        class="flex-1 bg-gray-100 rounded-full px-6 py-4 outline-none">
-
-                        <button class="bg-black text-white py-8 rounded-full px-6 font-semibold">
-                            Apply
-                        </button>
-
-                     </div>
-
-                     <!-- Checkout -->
-                      <button class="w-full mt-6 bg-black text-white py-4 rounded-full font-medium hover:bg-gray-800 transition">
-                        Go To Checkout &rarr;
-                      </button>
-
-                 </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="relative z-10 p-15">
-        <!-- Newletter Subscription -->
-        <div class="max-w-7xl mx-auto px-6">
-
-            <div class="bg-black rounded-[20px] p-8 lg:p-12">
-
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
-
-                    <div>
-                        <h2 class="text-white text-4xl lg:text-5xl font-black uppercase">
-                            Stay Up To Date About Our Latest Offers
-                        </h2>
-                    </div>
-
-                    <div class="space-y-4">
-
-                        <input
-                            type="email"
-                            placeholder="Enter your email address"
-                            class="w-full rounded-full px-6 py-4 bg-white outline-none"
+                        <img
+                            src="{{ item.product.image.url }}"
+                            alt="{{ item.product.name }}"
+                            width="144"
+                            height="170"
                         >
 
-                        <button
-                            class="w-full bg-white rounded-full py-4 font-semibold">
-                            Subscribe to Newsletter
-                        </button>
+                        <div>
+                            <p class="product-category">
+                                {{ item.product.category.name }}
+                            </p>
 
-                    </div>
+                            <h2>
+                                <a href="{% url 'mainsite:product_detail' item.product.slug %}">
+                                    {{ item.product.name }}
+                                </a>
+                            </h2>
 
-                </div>
+                            <p class="price">
+                                ₦{{ item.product.price }}
+                            </p>
+
+                            <button
+                                type="button"
+                                class="text-link remove-cart-item"
+                            >
+                                Remove
+                            </button>
+                        </div>
+
+                        <div class="quantity-control">
+
+                            <button
+                                type="button"
+                                aria-label="Decrease {{ item.product.name }} quantity"
+                                data-cart-minus
+                            >
+                                −
+                            </button>
+
+                            <output data-cart-quantity>
+                                {{ item.quantity }}
+                            </output>
+
+                            <button
+                                type="button"
+                                aria-label="Increase {{ item.product.name }} quantity"
+                                data-cart-plus
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                        <strong>
+                            ₦{{ item.line_total }}
+                        </strong>
+
+                    </article>
+
+                {% endfor %}
 
             </div>
 
+            <aside class="order-summary">
+
+                <h2>Order Summary</h2>
+
+                <p>
+                    <span>Subtotal</span>
+                    <strong>₦{{ subtotal }}</strong>
+                </p>
+
+                <p>
+                    <span>Delivery</span>
+
+                    <strong>
+                        {% if shipping %}
+                            ₦{{ shipping }}
+                        {% else %}
+                            Free
+                        {% endif %}
+                    </strong>
+                </p>
+
+                <p class="summary-total">
+                    <span>Total</span>
+                    <strong>₦{{ total }}</strong>
+                </p>
+
+                <label for="promo">
+                    Promo Code
+                </label>
+
+                <div class="promo">
+                    <input
+                        id="promo"
+                        type="text"
+                        placeholder="Enter code"
+                    >
+
+                    <button
+                        type="button"
+                        class="button button-small"
+                        data-promo
+                    >
+                        Apply
+                    </button>
+                </div>
+
+                <button
+                    class="button checkout-button"
+                    type="button"
+                    data-checkout
+                >
+                    Secure Checkout →
+                </button>
+
+                <p class="secure-note">
+                    🔒 Secure payments · Easy 14-day returns
+                </p>
+
+            </aside>
+
         </div>
 
-    </section>
+    {% else %}
 
-{% endblock content %}
+        <div class="empty-state">
+
+            <h2>Your Bag is Empty</h2>
+
+            <p>
+                Discover pieces you'll want to wear on repeat.
+            </p>
+
+            <a
+                class="button"
+                href="{% url 'mainsite:categories' %}"
+            >
+                Start Shopping
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
