@@ -1,10 +1,10 @@
 {% extends 'shared/mainlayout.html' %}
 
-{# ==========================================================
+<!-- ==========================================================
    Product Detail Page
    Displays detailed information about a single product,
    customer reviews, review form, and related products.
-========================================================== #}
+========================================================== -->
 
 {% block title %}
 
@@ -21,9 +21,9 @@
 
     {% if product %}
 
-        {# ==================================================
-           Breadcrumb Navigation
-        =================================================== #}
+        <!-- ==================================================
+            Breadcrumb Navigation
+         =================================================== -->
         <div class="shell breadcrumbs">
 
             <a href="{% url 'mainsite:index' %}">
@@ -45,16 +45,16 @@
         </div>
 
 
-        {# ==================================================
-           Product Overview
-           Displays gallery, pricing, purchase controls,
-           and delivery information.
-        =================================================== #}
+        <!-- ==================================================
+            Product Overview
+            Displays gallery, pricing, purchase controls,
+            and delivery information.
+         =================================================== -->
         <section class="shell product-detail">
 
-            {# --------------------------
-               Product Gallery
-            --------------------------- #}
+            <!-- --------------------------
+                Product Gallery
+            --------------------------- -->
             <div class="product-gallery">
 
                 <div class="product-image">
@@ -71,9 +71,9 @@
             </div>
 
 
-            {# --------------------------
-               Product Information
-            --------------------------- #}
+            <!-- --------------------------
+                Product Information
+            --------------------------- -->
             <div class="product-info">
 
                 <p class="eyebrow">
@@ -126,9 +126,9 @@
                 </p>
 
 
-                {# --------------------------
-                   Size Selection
-                --------------------------- #}
+                <!-- --------------------------
+                    Size Selection
+                --------------------------- -->
                 <div class="choice-group">
 
                     <span>Size</span>
@@ -175,9 +175,9 @@
                 </div>
 
 
-                {# --------------------------
-                   Purchase Controls
-                --------------------------- #}
+                <!-- --------------------------
+                    Purchase Controls
+                --------------------------- -->
                 <div class="purchase-row">
 
                     <div class="quantity-control">
@@ -217,9 +217,9 @@
                 </div>
 
 
-                {# --------------------------
-                   Delivery Information
-                --------------------------- #}
+                <!-- --------------------------
+                    Delivery Information
+                --------------------------- -->
                 <details>
 
                     <summary>
@@ -238,9 +238,9 @@
         </section>
 
 
-        {# ==================================================
-           Product Details & Reviews
-        =================================================== #}
+        <!-- ==================================================
+            Product Details & Reviews
+         =================================================== -->
         <section class="shell section product-tabs">
 
             <div>
@@ -300,9 +300,9 @@
         </section>
 
 
-        {# ==================================================
-           Customer Review Form
-        =================================================== #}
+        <!-- ==================================================
+            Customer Review Form
+         =================================================== -->
         <section class="shell section review-form">
 
             <h2>
@@ -361,9 +361,9 @@
         </section>
 
 
-        {# ==================================================
-           Related Products
-        =================================================== #}
+        <!-- ==================================================
+            Related Products
+         =================================================== -->
         <section class="shell section">
 
             <div class="section-heading">
@@ -388,10 +388,10 @@
 
     {% else %}
 
-        {# ==================================================
-           Empty State
-           Displayed when no product exists.
-        =================================================== #}
+        <!-- ==================================================
+            Empty State
+            Displayed when no product exists.
+         =================================================== -->
         <section class="shell section empty-state">
 
             <h1>

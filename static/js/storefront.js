@@ -20,15 +20,18 @@
   /** Keep every cart badge in sync after a server-confirmed mutation. */
   const setCount = (count) => document.querySelectorAll('[data-cart-count]').forEach((node) => { node.textContent = count || '0'; });
 
-  /**
+ /**
    * Submit URL-encoded data with Django's CSRF token.
    * Rejecting non-2xx responses prevents the UI from falsely claiming a cart update.
    */
   const post = async (url, data = {}) => {
+    // Grab the token from the meta tag we added to mainlayout.html
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'X-CSRFToken': getCookie('csrftoken'),
+        'X-CSRFToken': csrfToken,
         'X-Requested-With': 'XMLHttpRequest',
         'Content-Type': 'application/x-www-form-urlencoded',
       },

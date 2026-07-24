@@ -1,17 +1,26 @@
 {% extends 'shared/mainlayout.html' %}
 
+<!-- ==========================================================
+   Page Title
+========================================================== -->
 {% block title %}
     Your Bag
 {% endblock %}
 
 {% block content %}
 
+<!-- ==========================================================
+   Breadcrumb Navigation
+========================================================== -->
 <div class="shell breadcrumbs">
     <a href="{% url 'mainsite:index' %}">Home</a>
     <span>/</span>
     <span>Your Bag</span>
 </div>
 
+<!-- ==========================================================
+   Shopping Bag Content
+========================================================== -->
 <section class="shell section">
     <div class="section-heading">
         <div>
@@ -24,6 +33,7 @@
 
         <div class="cart-layout">
 
+            <!-- Cart Items List -->
             <div class="cart-items">
 
                 {% for item in cart_items %}
@@ -64,6 +74,7 @@
                             </button>
                         </div>
 
+                        <!-- Quantity Selector -->
                         <div class="quantity-control">
 
                             <button
@@ -98,6 +109,7 @@
 
             </div>
 
+            <!-- Order Summary Sidebar -->
             <aside class="order-summary">
 
                 <h2>Order Summary</h2>
@@ -124,6 +136,7 @@
                     <strong>₦{{ total }}</strong>
                 </p>
 
+                <!-- Promo Code -->
                 <label for="promo">
                     Promo Code
                 </label>
@@ -162,6 +175,7 @@
 
     {% else %}
 
+        <!-- Empty State -->
         <div class="empty-state">
 
             <h2>Your Bag is Empty</h2>
