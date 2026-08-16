@@ -29,7 +29,7 @@ DEBUG = os.getenv("DJANGO_DEBUG", "true").lower() == "true"
 if not DEBUG and not os.getenv("DJANGO_SECRET_KEY"):
     raise RuntimeError("DJANGO_SECRET_KEY must be set when DJANGO_DEBUG is false.")
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,testserver").split(",")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "159.65.86.124, localhost,127.0.0.1,testserver").split(",")
 
 
 # Application definition
