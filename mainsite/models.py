@@ -119,8 +119,8 @@ class Product(TimeStampedModel):
     class Meta:
         ordering = ("-created_at", "name")
         indexes = [models.Index(fields=("is_active", "category", "-created_at")), models.Index(fields=("is_active", "price"))]
-        constraints = [models.CheckConstraint(condition=Q(price__gte=0), name="product_price_non_negative"), models.CheckConstraint(condition=Q(old_price__isnull=True) | Q(old_price__gte=0), name="product_old_price_non_negative")]
-
+        constraints = [models.CheckConstraint(check=Q(price__gte=0), name="product_price_non_negative"), models.CheckConstraint(check=Q(old_price__isnull=True) | Q(old_price__gte=0), name="product_old_price_non_negative")]
+        
     def clean(self):
         """Reject misleading sale pricing before an editor can save it."""
         if self.old_price is not None and self.old_price < self.price:
